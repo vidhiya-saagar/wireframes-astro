@@ -20,8 +20,17 @@ import BookSlideshow from "../components/BookSlideshow.astro";
     </p>
   </Fragment>
 
-  <div class="my-3">
+  <div class="my-3 w-full flex flex-col items-center">
     <h2 class="italic font-serif py-2 text-lg">All Books</h2>
     <BookSlideshow />
+
+    <div>
+      <a
+        href="/books"
+        class="uppercase p-2 text-center my-3 underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+      >
+        See All Books
+      </a>
+    </div>
   </div>
 </Layout>
