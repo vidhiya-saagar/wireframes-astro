@@ -1,0 +1,13 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const { id } = Astro.params;
+
+console.log(id);
+---
+
+<Layout title="Book Name">
+  <Fragment slot="extra-headers">
+    <h1>Book Name</h1>
+  </Fragment>
+</Layout>
