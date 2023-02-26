@@ -3,11 +3,26 @@ import Layout from "../../layouts/Layout.astro";
 
 const { id } = Astro.params;
 
-console.log(id);
+export function getStaticPaths() {
+  return [
+    // Book IDs
+    { params: { id: 1 } },
+    { params: { id: 2 } },
+    { params: { id: 3 } },
+  ];
+}
+
+const response = await fetch(
+  "https://clean-dragons-hear-198-54-132-72.loca.lt/api/v1/books"
+);
+const data = await response.json();
+
+const book = data.books.find((b) => b.id == id);
+console.log(book);
 ---
 
 <Layout title="Book Name">
   <Fragment slot="extra-headers">
-    <h1>Book Name</h1>
+    <h1>{book.title_transliteration_english}</h1>
   </Fragment>
 </Layout>
