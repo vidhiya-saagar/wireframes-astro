@@ -12,17 +12,75 @@ export function getStaticPaths() {
   ];
 }
 
-const response = await fetch(
+// Fetch Book
+const bookRes = await fetch(
   "https://clean-dragons-hear-198-54-132-72.loca.lt/api/v1/books"
 );
-const data = await response.json();
-
+let data;
+data = await bookRes.json();
 const book = data.books.find((b) => b.id == id);
-console.log(book);
+
+// Fetch Chapters for the Book
+const chaptersRes = await fetch(
+  `https://clean-dragons-hear-198-54-132-72.loca.lt/api/v1/chapters?book_id=${id}`
+);
+data = await chaptersRes.json();
+const chapters = data.chapters;
+console.log(chapters);
 ---
 
 <Layout title="Book Name">
   <Fragment slot="extra-headers">
-    <h1>{book.title_transliteration_english}</h1>
+    <!-- Header Image -->
+    <div
+      class="relative flex w-full h-56 bg-gradient-to-b from-[#C4C4C4] to-transparent sm:h-80 transition-all"
+    >
+    </div>
+    <h1 class="font-serif font-bold italic text-center text-2xl">
+      {book.title_transliteration_english}
+    </h1>
+    <p class="text-gray-800 my-9">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a arcu sed
+      mauris feugiat luctus sit amet ut est.
+    </p>
   </Fragment>
+
+  <div>
+    <h2 class="font-serif text-2xl">Chapters</h2>
+
+    {
+      chapters.map((chapter, i) => (
+        <div class="flex space-x-2 border-black border-b-2 py-4 items-center justify-between">
+          <div class="space-y-3 sm:w-2/3">
+            <div class="flex items-baseline justify-between">
+              <p class="text-lg font-serif font-bold line-clamp-2 mr-5 cursor-pointer">
+                {chapter?.title_unicode}
+              </p>
+              <div class="ml-4">
+                <div
+                  class="radial-progress text-[8px]"
+                  style={{
+                    "--value": 100 - i * 10,
+                    "--size": "2rem",
+                    "--thickness": "2px",
+                  }}
+                >
+                  {100 - i * 10}%
+                </div>
+              </div>
+            </div>
+
+            <p>
+              {chapter.description_english?.substring(0, 120)}... Lorem ipsum
+              dolor sit amet, consectetur adipiscing elit. Curabitur ac orci
+              ultricies, viverra tellus sit amet, lobortis elit. Aliquam erat
+              volutpat. Sed metus turpis, rutrum eu varius non, bibendum quis
+              libero. In vulputate.
+            </p>
+          </div>
+          <div class="bg-slate-300 h-32 w-28" />
+        </div>
+      ))
+    }
+  </div>
 </Layout>
