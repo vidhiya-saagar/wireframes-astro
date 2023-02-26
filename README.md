@@ -1,6 +1,6 @@
 # SPG Wireframes - Astro 
 
-[Live Demo]([https://app.netlify.com/sites/admirable-salamander-f3c4c4/overview](https://admirable-salamander-f3c4c4.netlify.app/))
+[Live Demo](https://app.netlify.com/sites/admirable-salamander-f3c4c4/overview](https://admirable-salamander-f3c4c4.netlify.app/)
 
 ## Description
 
