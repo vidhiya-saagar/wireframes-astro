@@ -11,18 +11,17 @@ export function getStaticPaths() {
     { params: { id: 3 } },
   ];
 }
+
+const API_URL = "https://eight-tips-flash-198-54-132-74.loca.lt/";
+
 // Fetch Book
-const bookRes = await fetch(
-  "https://mighty-carpets-add-198-54-132-74.loca.lt/api/v1/books"
-);
+const bookRes = await fetch(`${API_URL}/api/v1/books`);
 let data;
 data = await bookRes.json();
 const book = data.books.find((b) => b.id == id);
 
 // Fetch Chapters for the Book
-const chaptersRes = await fetch(
-  `https://mighty-carpets-add-198-54-132-74.loca.lt/api/v1/chapters?book_id=${id}`
-);
+const chaptersRes = await fetch(`${API_URL}/api/v1/chapters?book_id=${id}`);
 data = await chaptersRes.json();
 const chapters = data.chapters;
 ---
