@@ -11,10 +11,9 @@ export function getStaticPaths() {
     { params: { id: 3 } },
   ];
 }
-
 // Fetch Book
 const bookRes = await fetch(
-  "https://clean-dragons-hear-198-54-132-72.loca.lt/api/v1/books"
+  "https://mighty-carpets-add-198-54-132-74.loca.lt/api/v1/books"
 );
 let data;
 data = await bookRes.json();
@@ -22,11 +21,10 @@ const book = data.books.find((b) => b.id == id);
 
 // Fetch Chapters for the Book
 const chaptersRes = await fetch(
-  `https://clean-dragons-hear-198-54-132-72.loca.lt/api/v1/chapters?book_id=${id}`
+  `https://mighty-carpets-add-198-54-132-74.loca.lt/api/v1/chapters?book_id=${id}`
 );
 data = await chaptersRes.json();
 const chapters = data.chapters;
-console.log(chapters);
 ---
 
 <Layout title="Book Name">
@@ -39,48 +37,66 @@ console.log(chapters);
     <h1 class="font-serif font-bold italic text-center text-2xl">
       {book.title_transliteration_english}
     </h1>
-    <p class="text-gray-800 my-9">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a arcu sed
-      mauris feugiat luctus sit amet ut est.
-    </p>
+    <div class="flex justify-center">
+      <p class="text-gray-800 my-9 text-center w-2/3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a arcu
+        sed mauris feugiat luctus sit amet ut est.
+      </p>
+    </div>
   </Fragment>
 
-  <div>
-    <h2 class="font-serif text-2xl">Chapters</h2>
+  <div class="flex my-16 lg:my-0 transition-all justify-center">
+    <div class="lg:max-w-7xl">
+      <h2 class="font-serif text-2xl">Chapters</h2>
 
-    {
-      chapters.map((chapter, i) => (
-        <div class="flex space-x-2 border-black border-b-2 py-4 items-center justify-between">
-          <div class="space-y-3 sm:w-2/3">
-            <div class="flex items-baseline justify-between">
-              <p class="text-lg font-serif font-bold line-clamp-2 mr-5 cursor-pointer">
-                {chapter?.title_unicode}
-              </p>
-              <div class="ml-4">
-                <div
-                  class="radial-progress text-[8px]"
-                  style={{
-                    "--value": 100 - i * 10,
-                    "--size": "2rem",
-                    "--thickness": "2px",
-                  }}
-                >
-                  {100 - i * 10}%
-                </div>
-              </div>
-            </div>
-
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- More about this Granth -->
+        <div class="hidden lg:block">
+          <div>
             <p>
-              {chapter.description_english?.substring(0, 120)}... Lorem ipsum
-              dolor sit amet, consectetur adipiscing elit. Curabitur ac orci
-              ultricies, viverra tellus sit amet, lobortis elit. Aliquam erat
-              volutpat. Sed metus turpis, rutrum eu varius non, bibendum quis
-              libero. In vulputate.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a
+              arcu sed mauris feugiat luctus sit amet ut est.
             </p>
           </div>
-          <div class="bg-slate-300 h-32 w-28" />
         </div>
-      ))
-    }
+        <!-- Container for Chapter List -->
+        <div class="mt-10 lg:mt-0">
+          {
+            chapters.map((chapter, i) => (
+              <div class="flex space-x-2 border-black border-b-2 py-4 items-center justify-between">
+                <div class="space-y-3 w-2/3">
+                  <div class="flex items-baseline justify-between">
+                    <p class="text-lg font-serif font-bold line-clamp-2 mr-5 cursor-pointer">
+                      {chapter?.title_unicode}
+                    </p>
+
+                    <div class="ml-4 hidden">
+                      <div
+                        class="radial-progress text-[8px]"
+                        style={{
+                          "--value": 100 - i * 10,
+                          "--size": "2rem",
+                          "--thickness": "2px",
+                        }}
+                      >
+                        {100 - i * 10}%
+                      </div>
+                    </div>
+                  </div>
+
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur ac orci ultricies, viverra tellus sit amet,
+                    lobortis elit. Aliquam erat volutpat. Sed metus turpis,
+                    rutrum eu varius non, bibendum quis libero. In vulputate.
+                  </p>
+                </div>
+                <div class="bg-slate-300 h-32 w-28" />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
   </div>
 </Layout>
