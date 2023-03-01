@@ -1,4 +1,5 @@
 ---
+import ChapterPreview from "../../components/ChapterPreview.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const { id } = Astro.params;
@@ -12,7 +13,7 @@ export function getStaticPaths() {
   ];
 }
 
-const API_URL = "https://eight-tips-flash-198-54-132-74.loca.lt/";
+const API_URL = "https://tangy-mice-marry-198-54-132-72.loca.lt";
 
 // Fetch Book
 const bookRes = await fetch(`${API_URL}/api/v1/books`);
@@ -43,6 +44,8 @@ const chapters = data.chapters;
       </p>
     </div>
   </Fragment>
+
+  <ChapterPreview />
 
   <div class="flex my-16 lg:my-0 transition-all justify-center">
     <div class="lg:max-w-7xl">
