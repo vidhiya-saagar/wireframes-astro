@@ -1,6 +1,7 @@
 ---
-import ChapterPreview from "../../components/ChapterPreview.astro";
+import ChapterPreview from "../../components/ChapterPreview.svelte";
 import Layout from "../../layouts/Layout.astro";
+import ChapterRow from "../../components/ChapterRow.svelte";
 
 const { id } = Astro.params;
 
@@ -13,7 +14,7 @@ export function getStaticPaths() {
   ];
 }
 
-const API_URL = "https://tangy-mice-marry-198-54-132-72.loca.lt";
+const API_URL = "https://early-paws-mate-198-54-132-78.loca.lt";
 
 // Fetch Book
 const bookRes = await fetch(`${API_URL}/api/v1/books`);
@@ -45,7 +46,8 @@ const chapters = data.chapters;
     </div>
   </Fragment>
 
-  <ChapterPreview />
+  <!-- The <ChapterPreview /> (modal) lives inside the <ChapterRow /> -->
+  <ChapterPreview client:load />
 
   <div class="flex my-16 lg:my-0 transition-all justify-center">
     <div class="lg:max-w-7xl">
@@ -65,36 +67,7 @@ const chapters = data.chapters;
         <div class="mt-10 lg:mt-0">
           {
             chapters.map((chapter, i) => (
-              <div class="flex space-x-2 border-black border-b-2 py-4 items-center justify-between">
-                <div class="space-y-3 w-2/3">
-                  <div class="flex items-baseline justify-between">
-                    <p class="text-lg font-serif font-bold line-clamp-2 mr-5 cursor-pointer">
-                      {chapter?.title_unicode}
-                    </p>
-
-                    <div class="ml-4 hidden">
-                      <div
-                        class="radial-progress text-[8px]"
-                        style={{
-                          "--value": 100 - i * 10,
-                          "--size": "2rem",
-                          "--thickness": "2px",
-                        }}
-                      >
-                        {100 - i * 10}%
-                      </div>
-                    </div>
-                  </div>
-
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Curabitur ac orci ultricies, viverra tellus sit amet,
-                    lobortis elit. Aliquam erat volutpat. Sed metus turpis,
-                    rutrum eu varius non, bibendum quis libero. In vulputate.
-                  </p>
-                </div>
-                <div class="bg-slate-300 h-32 w-28" />
-              </div>
+              <ChapterRow chapter={chapter} index={i} />
             ))
           }
         </div>
