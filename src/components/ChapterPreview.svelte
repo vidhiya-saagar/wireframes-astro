@@ -1,5 +1,19 @@
+<script>
+  import { isOpen, chapter } from "../store/chapterPreviewStore";
+
+  function closeModal() {
+    const modalContainer = document.querySelector(".chapter-preview-container");
+    isOpen.set(false);
+    setTimeout(function displayNoneOnModal() {
+      modalContainer.style.display = "none";
+    }, 300);
+  }
+</script>
+
 <div
-  class="relative z-10 open chapter-preview-container"
+  class={`relative z-10 chapter-preview-container ${
+    $isOpen ? "open" : "close"
+  }`}
   aria-labelledby="modal-title"
   role="dialog"
   aria-modal="true"
@@ -14,11 +28,13 @@
       From: "opacity-100"
       To: "opacity-0"
   -->
-  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
 
   <div class="fixed inset-0 z-10 overflow-y-auto outside">
     <div
-      class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 chapter-preview-panel ease"
+      class={`flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 chapter-preview-panel ease ${
+        $isOpen ? "open" : "close"
+      }`}
     >
       <!--
         Modal panel, show/hide based on modal state.
@@ -48,7 +64,8 @@
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M4.5 12.75l6 6 9-13.5"></path>
+                d="M4.5 12.75l6 6 9-13.5"
+              />
             </svg>
           </div>
           <div class="mt-3 text-center sm:mt-5">
@@ -60,8 +77,10 @@
             </h3>
             <div class="mt-2">
               <p class="text-sm text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequatur amet labore.
+                $isOpen:
+                <code>
+                  {JSON.stringify($isOpen, null, 2)}
+                </code>
               </p>
             </div>
           </div>
@@ -70,16 +89,16 @@
           <button
             type="button"
             class="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm"
-            >Go back to dashboard</button
+            on:click|once={closeModal}
           >
+            > Go back to dashboard
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ease-in => transition-timing-function: cubic-bezier(0.4, 0, 1, 1); -->
-<!-- ease-out => transition-timing-function: cubic-bezier(0, 0, 0.2, 1); -->
 <style>
   .open {
     transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -113,30 +132,3 @@
       scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 </style>
-
-<script>
-  document.querySelector(".outside").addEventListener("click", closeModal);
-  document.onkeydown = function (evt: Event) {
-    evt = evt || window.event;
-    var isEscape = false;
-    if ("key" in evt) {
-      isEscape = evt.key === "Escape" || evt.key === "Esc";
-    } else {
-      isEscape = evt.keyCode === 27;
-    }
-    if (isEscape) closeModal();
-  };
-
-  function closeModal() {
-    // Transitions
-    document
-      .querySelector(".chapter-preview-container")
-      .classList.remove("open");
-    document.querySelector(".chapter-preview-container").classList.add("close");
-    // Display None
-    setTimeout(function displayNoneOnModal() {
-      document.querySelector(".chapter-preview-container")["style"].display =
-        "none";
-    }, 300);
-  }
-</script>
