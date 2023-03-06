@@ -14,7 +14,7 @@ export function getStaticPaths() {
   ];
 }
 
-const API_URL = "https://early-paws-mate-198-54-132-78.loca.lt";
+const API_URL = "https://dirty-rules-shout-198-54-132-69.loca.lt";
 
 // Fetch Book
 const bookRes = await fetch(`${API_URL}/api/v1/books`);
@@ -67,7 +67,7 @@ const chapters = data.chapters;
         <div class="mt-10 lg:mt-0">
           {
             chapters.map((chapter, i) => (
-              <ChapterRow chapter={chapter} index={i} />
+              <ChapterRow client:load chapter={chapter} index={i} />
             ))
           }
         </div>

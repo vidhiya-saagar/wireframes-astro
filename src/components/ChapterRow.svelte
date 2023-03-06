@@ -1,12 +1,15 @@
 <script>
+  import { isOpen, chapterToDisplay } from "../store/chapterPreviewStore";
+
   export let chapter = {};
   export let index = 1;
   export let description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac orci ultricies, viverra tellus sit amet, lobortis elit. Aliquam erat volutpat. Sed metus turpis, rutrum eu varius non, bibendum quis libero. Invulputate.";
 
   function updateStateForModal() {
-    // chapterToPreview.set(chapter);
-    // openChapterPreview.set(true);
+    document.querySelector(".chapter-preview-container").style.display = "";
+    isOpen.set(true);
+    chapterToDisplay.set(chapter);
   }
 </script>
 
