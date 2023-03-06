@@ -32,7 +32,7 @@
 
   <div class="fixed inset-0 z-10 overflow-y-auto">
     <div
-      class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+      class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 chapter-preview-panel"
     >
       <!--
         Modal panel, show/hide based on modal state.
@@ -74,12 +74,12 @@
           <!-- <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"> -->
           <div class="mt-3 text-center">
             <h4 class="text-base text-center">
-              {$chapterToDisplay.bookName || "Book Name"}
+              {$chapterToDisplay?.bookName || "Book Name"}
             </h4>
             <h3
               class="text-2xl p-2 font-semibold leading-6 text-gray-900 text-center"
             >
-              {$chapterToDisplay.title_unicode}
+              {$chapterToDisplay?.title_unicode}
             </h3>
 
             <div class="my-8 flex justify-center items-center">
@@ -96,13 +96,7 @@
                 molestie, venenatis enim ac, consectetur quam. Quisque faucibus
                 auctor bibendum. Morbi pellentesque est eget erat tincidunt, et
                 faucibus nunc ultrices. Nulla congue arcu et scelerisque
-                iaculis. Quisque sit amet risus et risus fringilla tristique.
-                Maecenas efficitur, orci vel mollis mollis, quam lectus volutpat
-                lectus, in tristique turpis lectus nec enim. Nulla pellentesque
-                nulla orci, ac aliquam erat interdum ut. Nunc aliquam dui eu
-                dignissim luctus. Nam vel lacus eget lectus tempor dictum. Nunc
-                purus enim, fringilla ut consectetur malesuada, finibus vel
-                justo.
+                iaculis.
               </p>
             </div>
           </div>
