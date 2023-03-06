@@ -17,6 +17,7 @@
   aria-labelledby="modal-title"
   role="dialog"
   aria-modal="true"
+  style="display: none"
 >
   <!--
     Background backdrop, show/hide based on modal state.
