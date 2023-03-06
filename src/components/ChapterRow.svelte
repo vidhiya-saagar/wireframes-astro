@@ -19,10 +19,10 @@
   <div class="space-y-3 w-2/3">
     <div class="flex items-baseline justify-between">
       <button
-        class="text-lg font-serif font-bold line-clamp-2 mr-5 cursor-pointer"
+        class="text-lg font-serif text-left font-bold line-clamp-2 mr-5 cursor-pointer"
         on:click={updateStateForModal}
       >
-        {chapter.title_unicode}
+        <span>{chapter.title_unicode}</span>
       </button>
 
       <div class="ml-4 hidden">
