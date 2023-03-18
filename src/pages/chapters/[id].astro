@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export const getStaticPaths = async () => {
+  const API_URL = "https://quick-flies-relate-198-54-132-73.loca.lt";
+
+  const getChapterIds = async (bookId) => {
+    const res = await fetch(`${API_URL}/books/${bookId}/chapters.json`);
+    const { chapters } = await res.json();
+
+    return chapters.map((chapter) => chapter.id);
+  };
+
+  const getAllChapterIds = async (bookIds) => {
+    const chapterIds = await Promise.all(
+      bookIds.map((bookId) => getChapterIds(bookId))
+    );
+    return chapterIds.flat();
+  };
+
+  const bookIds = [1]; // Only one book for now
+  const chapterIds = await getAllChapterIds(bookIds);
+
+  return chapterIds.map((id) => ({ params: { id } }));
+};
+
+/**
+ * Fetch content for the chapter
+ */
+const { id } = Astro.params;
+const API_URL = "https://quick-flies-relate-198-54-132-73.loca.lt";
+
+const chapterContentRes = await fetch(`${API_URL}/chapters/${id}/content.json`);
+const { chapter } = await chapterContentRes.json();
+---
+
+<Layout title={`SPG - Chapter ${chapter.number} - ${chapter.title}`}>
+  <div class="flex w-full justify-center">
+    <div class="my-3 lg:max-w-7xl flex flex-col items-center">
+      <h1 class="italic font-serif py-2 text-xl font-semibold text-center">
+        {chapter.title}
+      </h1>
+      <h2 class="font-serif py-2 font-medium text-center">
+        Chapter #{chapter.number} of {chapter.book.enTitle}
+      </h2>
+    </div>
+  </div>
+
+  <div class="flex w-full justify-center">
+    <div class="my-3 lg:max-w-7xl flex flex-col items-center">
+      <h3 class="font-serif py-2 font-medium text-center">
+        {chapter.chhands.length} Chhands
+      </h3>
+    </div>
+  </div>
+
+  <div class="my-3 flex flex-col">
+    {
+      chapter.chhands.map((chhand) => {
+        return (
+          <div class="my-4">
+            <h3 class="font-serif text-xl font-semibold">{chhand.name}</h3>
+            {chhand.pauris.map((pauri) => {
+              return (
+                <div class="my-1">
+                  {pauri.tuks.map((tuk, index) => {
+                    return (
+                      <p class="leading-8 text-lg">
+                        {tuk.content}
+                        <span>
+                          {index + 1 === pauri.tuks.length
+                            ? `॥${pauri.number}॥`
+                            : " ।"}
+                        </span>
+                      </p>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        );
+      })
+    }
+  </div>
+  <!-- The `tuks` -->
+</Layout>
