@@ -75,12 +75,12 @@
           <!-- <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"> -->
           <div class="mt-3 text-center">
             <h4 class="text-base text-center">
-              {$chapterToDisplay?.bookName || "Book Name"}
+              {$chapterToDisplay?.bookEnTitle || "Book Name"}
             </h4>
             <h3
               class="text-2xl p-2 font-semibold leading-6 text-gray-900 text-center"
             >
-              {$chapterToDisplay?.title_unicode}
+              {$chapterToDisplay?.title || "Chapter Title"}
             </h3>
 
             <div class="my-8 flex justify-center items-center">
@@ -106,7 +106,7 @@
           <button
             type="button"
             class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-            >Deactivate</button
+            >Close</button
           >
           <button
             type="button"
