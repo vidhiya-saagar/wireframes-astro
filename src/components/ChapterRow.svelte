@@ -2,6 +2,7 @@
   import { isOpen, chapterToDisplay } from "../store/chapterPreviewStore";
 
   export let chapter = {};
+  export let bookEnTitle = "";
   export let index = 1;
   export let description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac orci ultricies, viverra tellus sit amet, lobortis elit. Aliquam erat volutpat. Sed metus turpis, rutrum eu varius non, bibendum quis libero. Invulputate.";
@@ -9,7 +10,7 @@
   function updateStateForModal() {
     document.querySelector(".chapter-preview-container").style.display = "";
     isOpen.set(true);
-    chapterToDisplay.set(chapter);
+    chapterToDisplay.set({ ...chapter, bookEnTitle });
   }
 </script>
 
@@ -22,7 +23,7 @@
         class="text-lg font-serif text-left font-bold line-clamp-2 mr-5 cursor-pointer"
         on:click={updateStateForModal}
       >
-        <span>{chapter.title_unicode}</span>
+        <span>{chapter.title}</span>
       </button>
 
       <div class="ml-4 hidden">

@@ -14,18 +14,14 @@ export function getStaticPaths() {
   ];
 }
 
-const API_URL = "https://dirty-rules-shout-198-54-132-69.loca.lt";
-
-// Fetch Book
-const bookRes = await fetch(`${API_URL}/api/v1/books`);
-let data;
-data = await bookRes.json();
-const book = data.books.find((b) => b.id == id);
+const API_URL = "https://quick-flies-relate-198-54-132-73.loca.lt";
 
 // Fetch Chapters for the Book
-const chaptersRes = await fetch(`${API_URL}/api/v1/chapters?book_id=${id}`);
-data = await chaptersRes.json();
-const chapters = data.chapters;
+const bookRes = await fetch(`${API_URL}/books/${id}.json`);
+const { book } = await bookRes.json();
+
+const chaptersRes = await fetch(`${API_URL}/books/${id}/chapters.json`);
+const { chapters } = await chaptersRes.json();
 ---
 
 <Layout title="Book Name">
@@ -36,7 +32,7 @@ const chapters = data.chapters;
     >
     </div>
     <h1 class="font-serif font-bold italic text-center text-2xl">
-      {book.title_transliteration_english}
+      {book.enTitle}
     </h1>
     <div class="flex justify-center">
       <p class="text-gray-800 my-9 text-center w-2/3">
@@ -67,7 +63,12 @@ const chapters = data.chapters;
         <div class="mt-10 lg:mt-0">
           {
             chapters.map((chapter, i) => (
-              <ChapterRow client:load chapter={chapter} index={i} />
+              <ChapterRow
+                client:load
+                chapter={chapter}
+                bookEnTitle={book.enTitle}
+                index={chapter.id}
+              />
             ))
           }
         </div>

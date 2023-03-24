@@ -3,13 +3,10 @@ import { atom } from "nanostores";
 interface ChapterInfo {
   id: number;
   number: number;
-  order_number: number;
-  title_unicode: string;
-  title_gs: string;
-  title_transliteration_english: string;
-  description_english: string;
-  title_translation: string;
-  artwork_url: string;
+  title: string;
+  enTitle: string;
+  enShortSummary: string;
+  artworkUrl: string;
   setOpenPreview: Function;
   bookName: string;
 }
