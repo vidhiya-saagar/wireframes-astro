@@ -11,7 +11,8 @@ export const getStaticPaths = async () => {
     const res = await fetch(`${API_URL}/books/${bookId}/chapters.json`);
     const { chapters } = await res.json();
 
-    return chapters.map((chapter) => chapter.id);
+    // return chapters.map((chapter) => chapter.id);
+    return [1]; // Return only one chapter for now
   };
 
   const getAllChapterIds = async (bookIds) => {
