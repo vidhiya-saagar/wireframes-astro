@@ -1,5 +1,8 @@
 ---
+import FootnoteSlideOver from "../../components/FootnoteSlideOver";
+import Pauri from "../../components/Pauri.astro";
 import Layout from "../../layouts/Layout.astro";
+import { fetchFootnoteContent } from "../../helpers/fetchFootnoteContent";
 
 export const getStaticPaths = async () => {
   const API_URL = import.meta.env.API_URL;
@@ -33,6 +36,37 @@ const API_URL = import.meta.env.API_URL;
 
 const chapterContentRes = await fetch(`${API_URL}/chapters/${id}/content.json`);
 const { chapter } = await chapterContentRes.json();
+
+/**
+ * Fetch footnotes for each Pauri and Tuk
+ */
+const footnotePromises = [];
+
+console.log("STARTING TO FETCH FOOTNOTES");
+for (const chhand of chapter.chhands) {
+  for (const pauri of chhand.pauris) {
+    if (pauri.footnote?.entryId) {
+      const promise = fetchFootnoteContent(pauri.footnote.entryId).then(
+        (customFootnotes) => {
+          pauri.footnote.customFootnotes = customFootnotes;
+        }
+      );
+      footnotePromises.push(promise);
+    }
+    for (const tuk of pauri.tuks) {
+      if (tuk.footnote?.entryId) {
+        const promise = fetchFootnoteContent(tuk.footnote.entryId).then(
+          (customFootnotes) => {
+            tuk.footnote.customFootnotes = customFootnotes;
+          }
+        );
+        footnotePromises.push(promise);
+      }
+    }
+  }
+}
+
+await Promise.all(footnotePromises);
 ---
 
 <Layout title={`SPG - Chapter ${chapter.number} - ${chapter.title}`}>
@@ -61,28 +95,14 @@ const { chapter } = await chapterContentRes.json();
         return (
           <div class="my-4">
             <h3 class="font-serif text-xl font-semibold">{chhand.name}</h3>
-            {chhand.pauris.map((pauri) => {
-              return (
-                <div class="my-1">
-                  {pauri.tuks.map((tuk, index) => {
-                    return (
-                      <p class="leading-8 text-lg">
-                        {tuk.content}
-                        <span>
-                          {index + 1 === pauri.tuks.length
-                            ? `॥${pauri.number}॥`
-                            : " ।"}
-                        </span>
-                      </p>
-                    );
-                  })}
-                </div>
-              );
-            })}
+            {chhand.pauris.slice(0, 5).map((pauri) => (
+              <Pauri pauri={pauri} />
+            ))}
           </div>
         );
       })
     }
   </div>
-  <!-- The `tuks` -->
+
+  <FootnoteSlideOver client:load />
 </Layout>
