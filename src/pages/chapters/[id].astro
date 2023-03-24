@@ -42,7 +42,6 @@ const { chapter } = await chapterContentRes.json();
  */
 const footnotePromises = [];
 
-console.log("STARTING TO FETCH FOOTNOTES");
 for (const chhand of chapter.chhands) {
   for (const pauri of chhand.pauris) {
     if (pauri.footnote?.entryId) {

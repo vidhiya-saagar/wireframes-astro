@@ -18,8 +18,6 @@ export default function FootnoteSlideOver() {
   const $originalTuk = useStore(originalTuk);
   const $customFootnotes = useStore(customFootnotes);
 
-  console.log("$bhaiVirSinghFootnote", $bhaiVirSinghFootnote);
-  console.log("$customFootnotes", $customFootnotes);
   return (
     <Transition.Root show={$isOpen} as={Fragment}>
       <Dialog
