@@ -1,0 +1,87 @@
+.footnote-content {
+  /* General typography and formatting */
+  font-family: "Georgia", serif;
+  line-height: 1.6;
+  color: #333;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.footnote-content p {
+  font-size: 18px;
+  margin-bottom: 1.5em;
+}
+
+.footnote-content h1,
+.footnote-content h2,
+.footnote-content h3,
+.footnote-content h4,
+.footnote-content h5,
+.footnote-content h6 {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-weight: bold;
+  margin-bottom: 1em;
+  line-height: 1.2;
+}
+
+.footnote-content h1 {
+  font-size: 38px;
+}
+
+.footnote-content h2 {
+  font-size: 32px;
+}
+
+.footnote-content h3 {
+  font-size: 28px;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-weight: bold;
+  margin-bottom: 1em;
+  line-height: 1.2;
+}
+
+.footnote-content h4 {
+  font-size: 24px;
+}
+
+.footnote-content h5 {
+  font-size: 20px;
+}
+
+.footnote-content h6 {
+  font-size: 18px;
+}
+
+/* Images and captions */
+.footnote-content figure {
+  margin-bottom: 1.5em;
+  text-align: center;
+}
+
+.footnote-content figcaption {
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 0.5em;
+  color: #666;
+}
+
+/* Blockquotes */
+.footnote-content blockquote {
+  font-family: "Georgia", serif;
+  font-size: 22px;
+  font-weight: italic;
+  line-height: 1.4;
+  margin: 1.5em 0;
+  padding-left: 2.5em;
+  position: relative;
+  color: #666;
+}
+
+.footnote-content blockquote:before {
+  content: "“";
+  font-size: 40px;
+  position: absolute;
+  left: 0;
+  top: -10px;
+  color: #666;
+}
