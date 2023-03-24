@@ -14,7 +14,7 @@ export function getStaticPaths() {
   ];
 }
 
-const API_URL = "https://quick-flies-relate-198-54-132-73.loca.lt";
+const API_URL = import.meta.env.API_URL;
 
 // Fetch Chapters for the Book
 const bookRes = await fetch(`${API_URL}/books/${id}.json`);

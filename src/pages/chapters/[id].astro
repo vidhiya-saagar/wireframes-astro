@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 
 export const getStaticPaths = async () => {
-  const API_URL = "https://quick-flies-relate-198-54-132-73.loca.lt";
+  const API_URL = import.meta.env.API_URL;
 
   const getChapterIds = async (bookId) => {
     const res = await fetch(`${API_URL}/books/${bookId}/chapters.json`);
@@ -28,7 +28,8 @@ export const getStaticPaths = async () => {
  * Fetch content for the chapter
  */
 const { id } = Astro.params;
-const API_URL = "https://quick-flies-relate-198-54-132-73.loca.lt";
+
+const API_URL = import.meta.env.API_URL;
 
 const chapterContentRes = await fetch(`${API_URL}/chapters/${id}/content.json`);
 const { chapter } = await chapterContentRes.json();
