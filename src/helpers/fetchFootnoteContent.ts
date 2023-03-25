@@ -1,28 +1,6 @@
-import { Entry, Asset } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 import { client } from "./contentful.js";
-
-interface FootnoteContentItem {
-  content: Document | null;
-  media: Asset | null;
-}
-
-interface FootnoteContent {
-  vidhiyaSaagar: FootnoteContentItem | null;
-  kamalpreetSingh: FootnoteContentItem | null;
-  manglacharan: FootnoteContentItem | null;
-}
-
-interface FootnoteFields {
-  entryName: string;
-  vidhiyaSaagarContent: Document;
-  vidhiyaSaagarMedia: Asset;
-  kamalpreetSinghContent: Document;
-  kamalpreetSinghMedia: Asset;
-  manglacharanContent: Document;
-}
-
-type FootnoteEntry = Entry<FootnoteFields>;
+import { FootnoteContent, FootnoteContentItem, FootnoteEntry } from "../types/cmsFootnoteType.js";
 
 /**
  * Fetches and returns a FootnoteContentItem object with content and media if either exists, otherwise returns null.
@@ -55,15 +33,15 @@ export async function fetchFootnoteContent(
   }
 
   const footnoteContent: FootnoteContent = {
-    vidhiyaSaagar: await getFootnoteContentItem(
+    'Vidhiya Saagar': await getFootnoteContentItem(
       entry.fields.vidhiyaSaagarContent,
       entry.fields.vidhiyaSaagarMedia?.sys.id
     ),
-    kamalpreetSingh: await getFootnoteContentItem(
+    'Kamalpreet Singh': await getFootnoteContentItem(
       entry.fields.kamalpreetSinghContent,
       entry.fields.kamalpreetSinghMedia?.sys.id
     ),
-    manglacharan: await getFootnoteContentItem(
+    'Manglacharan': await getFootnoteContentItem(
       entry.fields.manglacharanContent,
       null
     ),
