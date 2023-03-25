@@ -1,3 +1,4 @@
+import { FootnoteContent as CustomFootnote } from "./cmsFootnoteType";
 export type Book = {
   id: number;
   title: string;
@@ -52,19 +53,4 @@ export type Tuk = {
   drVirSinghFootnote: string | null;
   translation: Translation | null;
   footnote: Footnote | null;
-};
-
-export type CustomFootnote = {
-  [key: string]: {
-    content: string;
-    media?: Media;
-  };
-};
-
-export type Media = {
-  fields: {
-    file: {
-      url: string;
-    };
-  };
 };
