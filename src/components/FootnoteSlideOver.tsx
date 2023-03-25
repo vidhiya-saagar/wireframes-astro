@@ -106,11 +106,12 @@ export default function FootnoteSlideOver() {
                             if (value !== null) {
                               return (
                                 <div key={key}>
-                                  <p className="text-lg font-semibold py-2">
-                                    {key}
-                                  </p>
+                                  <p className="font-semibold py-2">{key}:</p>
+
+                                  {/* Create HTML Dom Elements from CMS Rich Text */}
                                   {documentToReactComponents(value.content)}
 
+                                  {/* Create <img /> */}
                                   {value.media && (
                                     <figure>
                                       <img
