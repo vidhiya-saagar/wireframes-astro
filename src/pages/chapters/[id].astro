@@ -12,13 +12,11 @@ export const getStaticPaths = async () => {
     const { chapters } = await res.json();
 
     // return chapters.map((chapter) => chapter.id);
-    return [1]; // Return only one chapter for now
+    return [1, 2, 3]; // Return only one chapter for now
   };
 
   const getAllChapterIds = async (bookIds) => {
-    const chapterIds = await Promise.all(
-      bookIds.map((bookId) => getChapterIds(bookId))
-    );
+    const chapterIds = await Promise.all(bookIds.map((bookId) => getChapterIds(bookId)));
     return chapterIds.flat();
   };
 
@@ -46,20 +44,16 @@ const footnotePromises = [];
 for (const chhand of chapter.chhands) {
   for (const pauri of chhand.pauris) {
     if (pauri.footnote?.entryId) {
-      const promise = fetchFootnoteContent(pauri.footnote.entryId).then(
-        (customFootnotes) => {
-          pauri.footnote.customFootnotes = customFootnotes;
-        }
-      );
+      const promise = fetchFootnoteContent(pauri.footnote.entryId).then((customFootnotes) => {
+        pauri.footnote.customFootnotes = customFootnotes;
+      });
       footnotePromises.push(promise);
     }
     for (const tuk of pauri.tuks) {
       if (tuk.footnote?.entryId) {
-        const promise = fetchFootnoteContent(tuk.footnote.entryId).then(
-          (customFootnotes) => {
-            tuk.footnote.customFootnotes = customFootnotes;
-          }
-        );
+        const promise = fetchFootnoteContent(tuk.footnote.entryId).then((customFootnotes) => {
+          tuk.footnote.customFootnotes = customFootnotes;
+        });
         footnotePromises.push(promise);
       }
     }
@@ -89,14 +83,16 @@ await Promise.all(footnotePromises);
     </div>
   </div>
 
-  <div class="my-3 flex flex-col">
+  <div class="my-20 flex flex-col">
     {
       chapter.chhands.map((chhand) => {
         return (
-          <div class="my-4">
-            <h3 class="font-serif text-xl font-semibold">{chhand.name}</h3>
+          <div>
+            <h3 class="font-serif text-xl text-gray-700">{chhand.name}</h3>
             {chhand.pauris.slice(0, 5).map((pauri) => (
-              <Pauri pauri={pauri} />
+              <div class="mb-10 text-left">
+                <Pauri pauri={pauri} />
+              </div>
             ))}
           </div>
         );

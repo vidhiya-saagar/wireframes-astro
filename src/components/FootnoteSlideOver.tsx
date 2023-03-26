@@ -20,16 +20,12 @@ export default function FootnoteSlideOver() {
 
   return (
     <Transition.Root show={$isOpen} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-10"
-        onClose={() => isOpen.set(false)}
-      >
+      <Dialog as="div" className="relative z-10" onClose={() => isOpen.set(false)}>
         <div className="fixed inset-0" />
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 footnote-content">
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
               <Transition.Child
                 as={Fragment}
                 enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -40,7 +36,7 @@ export default function FootnoteSlideOver() {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                  <div className="footnote-content flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
@@ -61,9 +57,7 @@ export default function FootnoteSlideOver() {
                     {/* Bhai Vir Singh Footnotes BELOW */}
                     {$bhaiVirSinghFootnote && (
                       <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                        <p className="text-lg font-semibold py-2">
-                          Dr. Bhai Vir Singh
-                        </p>
+                        <p className="text-lg font-semibold py-2">Dr. Bhai Vir Singh</p>
 
                         <blockquote className="relative">
                           <svg
@@ -101,36 +95,32 @@ export default function FootnoteSlideOver() {
                     {/* Custom Footnotes BELOW */}
                     {$customFootnotes && (
                       <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                        {Object.entries($customFootnotes).map(
-                          ([key, value]) => {
-                            if (value !== null) {
-                              return (
-                                <div key={key}>
-                                  <p className="font-semibold py-2">{key}:</p>
+                        {Object.entries($customFootnotes).map(([key, value]) => {
+                          if (value !== null) {
+                            return (
+                              <div key={key}>
+                                <p className="font-semibold py-2">{key}:</p>
 
-                                  {/* Create HTML Dom Elements from CMS Rich Text */}
-                                  {documentToReactComponents(value.content)}
+                                {/* Create HTML Dom Elements from CMS Rich Text */}
+                                {documentToReactComponents(value.content)}
 
-                                  {/* Create <img /> */}
-                                  {value.media && (
-                                    <figure>
-                                      <img
-                                        src={value.media.fields.file.url}
-                                        alt={value.media.fields.title}
-                                      />
-                                      {value.media.fields.description && (
-                                        <figcaption>
-                                          {value.media.fields.description}
-                                        </figcaption>
-                                      )}
-                                    </figure>
-                                  )}
-                                </div>
-                              );
-                            }
-                            return null;
+                                {/* Create <img /> */}
+                                {value.media && (
+                                  <figure>
+                                    <img
+                                      src={value.media.fields.file.url}
+                                      alt={value.media.fields.title}
+                                    />
+                                    {value.media.fields.description && (
+                                      <figcaption>{value.media.fields.description}</figcaption>
+                                    )}
+                                  </figure>
+                                )}
+                              </div>
+                            );
                           }
-                        )}
+                          return null;
+                        })}
                       </div>
                     )}
                     {/* Custom Footnotes ABOVE */}
