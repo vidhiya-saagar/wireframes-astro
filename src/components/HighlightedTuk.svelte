@@ -20,11 +20,8 @@
   }
 </script>
 
-<button class="leading-8 text-lg cursor-pointer" on:click={openSidePanel}>
+<button class="leading-8 text-xl cursor-pointer text-left" on:click={openSidePanel}>
   <span class="bg-gray-200 py-1">
-    {tuk.content}
-    <span>
-      {isLastTuk ? `॥${pauriNumber}॥` : " ।"}
-    </span>
+    {tuk.content}<span class="whitespace-nowrap">&nbsp;{isLastTuk ? `॥${pauriNumber}॥` : "।"}</span>
   </span>
 </button>
