@@ -1,19 +1,17 @@
-<script>
+<script lang="ts">
   import { isOpen, chapterToDisplay } from "../store/chapterPreviewStore";
 
   function closeModal() {
-    const modalContainer = document.querySelector(".chapter-preview-container");
+    const container: HTMLElement = document.querySelector(".chapter-preview-container");
     isOpen.set(false);
     setTimeout(function displayNoneOnModal() {
-      modalContainer.style.display = "none";
+      container.style.display = "none";
     }, 300);
   }
 </script>
 
 <div
-  class={`chapter-preview-container relative z-10 ${
-    $isOpen ? "open" : "close"
-  }`}
+  class={`chapter-preview-container relative z-10 ${$isOpen ? "open" : "close"}`}
   aria-labelledby="modal-title"
   role="dialog"
   aria-modal="true"
@@ -63,11 +61,7 @@
               stroke="currentColor"
               aria-hidden="true"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
@@ -75,11 +69,9 @@
           <!-- <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"> -->
           <div class="mt-3 text-center">
             <h4 class="text-base text-center">
-              {$chapterToDisplay?.bookEnTitle || "Book Name"}
+              {$chapterToDisplay?.bookName || "Book Name"}
             </h4>
-            <h3
-              class="text-2xl p-2 font-semibold leading-6 text-gray-900 text-center"
-            >
+            <h3 class="text-2xl p-2 font-semibold leading-6 text-gray-900 text-center">
               {$chapterToDisplay?.title || "Chapter Title"}
             </h3>
 
@@ -88,16 +80,13 @@
             </div>
             <div class="mt-2">
               <p class="text-sm text-gray-500">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a
-                arcu sed mauris feugiat luctus sit amet ut est. Praesent eros
-                dolor, faucibus ac semper vel, sollicitudin ac ipsum. Duis
-                suscipit eu dui vitae ullamcorper. Aenean venenatis fermentum
-                ullamcorper. Sed quis enim tempus, vehicula dui vitae,
-                sollicitudin velit. Duis vel rutrum ante. Nunc quis dui
-                molestie, venenatis enim ac, consectetur quam. Quisque faucibus
-                auctor bibendum. Morbi pellentesque est eget erat tincidunt, et
-                faucibus nunc ultrices. Nulla congue arcu et scelerisque
-                iaculis.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a arcu sed mauris
+                feugiat luctus sit amet ut est. Praesent eros dolor, faucibus ac semper vel,
+                sollicitudin ac ipsum. Duis suscipit eu dui vitae ullamcorper. Aenean venenatis
+                fermentum ullamcorper. Sed quis enim tempus, vehicula dui vitae, sollicitudin velit.
+                Duis vel rutrum ante. Nunc quis dui molestie, venenatis enim ac, consectetur quam.
+                Quisque faucibus auctor bibendum. Morbi pellentesque est eget erat tincidunt, et
+                faucibus nunc ultrices. Nulla congue arcu et scelerisque iaculis.
               </p>
             </div>
           </div>
@@ -137,9 +126,9 @@
     transition-duration: 300ms;
     opacity: 1;
     --tw-translate-y: 0px;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y))
-      rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-      scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+      skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+      scaleY(var(--tw-scale-y));
   }
 
   .close {
@@ -153,8 +142,8 @@
     transition-duration: 200ms;
     opacity: 0;
     --tw-translate-y: 1rem /* 16px */;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y))
-      rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-      scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+      skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+      scaleY(var(--tw-scale-y));
   }
 </style>

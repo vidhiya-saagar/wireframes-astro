@@ -1,4 +1,4 @@
-import { FootnoteContent as CustomFootnote } from "./cmsFootnoteType";
+import { FootnoteContent as CustomFootnote } from './cmsFootnoteType';
 export type Book = {
   id: number;
   title: string;

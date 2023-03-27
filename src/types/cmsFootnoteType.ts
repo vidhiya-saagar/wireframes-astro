@@ -1,5 +1,5 @@
-import { Entry, Asset } from "contentful";
-import { Document } from "@contentful/rich-text-types";
+import { Entry, Asset } from 'contentful';
+import { Document } from '@contentful/rich-text-types';
 
 export interface FootnoteContentItem {
   content: Document | null;
@@ -10,7 +10,7 @@ export type EditorName = 'Vidhiya Saagar' | 'Kamalpreet Singh' | 'Manglacharan';
 
 export type FootnoteContent = {
   [K in EditorName]: FootnoteContentItem | null;
-}
+};
 
 export interface FootnoteFields {
   entryName: string;

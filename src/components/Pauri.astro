@@ -1,55 +1,57 @@
 ---
 import HighlightedTuk from "./HighlightedTuk.svelte";
-import { Pauri } from "../types/appTypes";
+import { Pauri, Tuk } from "../types/appTypes";
 import ViewPauriFootnoteButton from "./ViewPauriFootnoteButton.svelte";
+import PauriWithTukTranslations from "./PauriWithTukTranslations.astro";
 
 export interface Props {
   pauri: Pauri;
 }
 
 const { pauri } = Astro.props;
+const hasPauriTranslation = pauri.translation?.enTranslation;
+const hasPauriFootnote = pauri.footnote !== null;
 ---
 
-<div>
+<>
   {
-    pauri.tuks.map((tuk, index) => (
-      <>
-        <div>
-          {tuk.drVirSinghFootnote === null && tuk.footnote === null ? (
-            <div>
-              <p class="leading-8 text-lg">
-                <span>{tuk.content}</span>
-                <span>
-                  {index + 1 === pauri.tuks.length ? `॥${pauri.number}॥` : " ।"}
-                </span>
-              </p>
-              <p class="leading-8 text-lg text-amber-800">
-                <span>{tuk.translation?.enTranslation}</span>
-                <span>
-                  {index + 1 === pauri.tuks.length
-                    ? ` ||${pauri.number}||`
-                    : " |"}
-                </span>
-              </p>
+    hasPauriTranslation ? (
+      <div class="py-4">
+        {pauri.tuks.map((tuk: Tuk, index) => {
+          const hasTukFootnote = tuk.drVirSinghFootnote || tuk.footnote;
+          const isLastTuk = index + 1 === pauri.tuks.length;
+
+          return (
+            <div class="py-2">
+              {hasTukFootnote ? (
+                <HighlightedTuk
+                  tuk={tuk}
+                  isLastTuk={isLastTuk}
+                  pauriNumber={pauri.number}
+                  client:visible
+                />
+              ) : (
+                <p class="leading-8 text-xl font-medium">
+                  {tuk.content}
+                  <span class="whitespace-nowrap">
+                    &nbsp;{isLastTuk ? `॥${pauri.number}॥` : "।"}
+                  </span>
+                </p>
+              )}
             </div>
-          ) : (
-            <HighlightedTuk
-              tuk={tuk}
-              isLastTuk={index + 1 === pauri.tuks.length}
-              pauriNumber={pauri.number}
-              client:load
-            />
-          )}
-          <p class="leading-8 text-lg text-amber-800">
+          );
+        })}
+        {pauri.translation && (
+          <p class="leading-8 text-lg italic font-sans">
             {pauri.translation?.enTranslation}
+            <span>||{pauri.number}||</span>
           </p>
-        </div>
-      </>
-    ))
-  }
-  {
-    pauri.footnote?.customFootnotes && (
-      <ViewPauriFootnoteButton pauri={pauri} client:visible />
+        )}
+
+        {hasPauriFootnote && <ViewPauriFootnoteButton pauri={pauri} client:visible />}
+      </div>
+    ) : (
+      <PauriWithTukTranslations pauri={pauri} />
     )
   }
-</div>
+</>

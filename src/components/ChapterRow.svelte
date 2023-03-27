@@ -1,22 +1,22 @@
-<script>
+<script lang="ts">
   import { isOpen, chapterToDisplay } from "../store/chapterPreviewStore";
+  import type { Chapter } from "../types/appTypes";
 
-  export let chapter = {};
-  export let bookEnTitle = "";
+  export let chapter: Chapter = null;
+  export let bookName: string = "";
   export let index = 1;
   export let description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac orci ultricies, viverra tellus sit amet, lobortis elit. Aliquam erat volutpat. Sed metus turpis, rutrum eu varius non, bibendum quis libero. Invulputate.";
 
   function updateStateForModal() {
-    document.querySelector(".chapter-preview-container").style.display = "";
+    const container: HTMLElement = document.querySelector(".chapter-preview-container");
+    container.style.display = "";
     isOpen.set(true);
-    chapterToDisplay.set({ ...chapter, bookEnTitle });
+    chapterToDisplay.set({ ...chapter, bookName });
   }
 </script>
 
-<div
-  class="flex space-x-2 border-black border-b-2 py-4 items-center justify-between"
->
+<div class="flex space-x-2 border-black border-b-2 py-4 items-center justify-between">
   <div class="space-y-3 w-2/3">
     <div class="flex items-baseline justify-between">
       <button
@@ -25,19 +25,6 @@
       >
         <span>{chapter.title}</span>
       </button>
-
-      <div class="ml-4 hidden">
-        <div
-          class="radial-progress text-[8px]"
-          style={{
-            "--value": 100 - index * 10,
-            "--size": "2rem",
-            "--thickness": "2px",
-          }}
-        >
-          {100 - index * 10}%
-        </div>
-      </div>
     </div>
 
     <p>{description}</p>
