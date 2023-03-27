@@ -3,7 +3,7 @@
   import type { Chapter } from "../types/appTypes";
 
   export let chapter: Chapter = null;
-  export let bookEnTitle: string = "";
+  export let bookName: string = "";
   export let index = 1;
   export let description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac orci ultricies, viverra tellus sit amet, lobortis elit. Aliquam erat volutpat. Sed metus turpis, rutrum eu varius non, bibendum quis libero. Invulputate.";
@@ -12,7 +12,7 @@
     const container: HTMLElement = document.querySelector(".chapter-preview-container");
     container.style.display = "";
     isOpen.set(true);
-    chapterToDisplay.set({ ...chapter, bookName: bookEnTitle });
+    chapterToDisplay.set({ ...chapter, bookName });
   }
 </script>
 

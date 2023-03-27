@@ -21,8 +21,6 @@ const hasPauriFootnote = pauri.footnote !== null;
           const hasTukFootnote = tuk.drVirSinghFootnote || tuk.footnote;
           const isLastTuk = index + 1 === pauri.tuks.length;
 
-          console.log("isLastTuk", isLastTuk);
-
           return (
             <div class="py-2">
               {hasTukFootnote ? (

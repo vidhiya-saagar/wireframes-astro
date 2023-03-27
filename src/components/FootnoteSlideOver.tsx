@@ -1,16 +1,16 @@
-import { Fragment } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useStore } from "@nanostores/react";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { Fragment } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { useStore } from '@nanostores/react';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-import "./styles/FootnoteSlideOver.css";
+import './styles/FootnoteSlideOver.css';
 import {
   isOpen,
   originalTuk,
   bhaiVirSinghFootnote,
   customFootnotes,
-} from "../store/tukFootnoteStore";
+} from '../store/tukFootnoteStore';
 
 export default function FootnoteSlideOver() {
   const $isOpen = useStore(isOpen);

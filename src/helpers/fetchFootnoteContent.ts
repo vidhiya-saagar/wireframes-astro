@@ -1,6 +1,6 @@
-import { Document } from "@contentful/rich-text-types";
-import { client } from "./contentful.js";
-import { FootnoteContent, FootnoteContentItem, FootnoteEntry } from "../types/cmsFootnoteType.js";
+import { Document } from '@contentful/rich-text-types';
+import { client } from './contentful.js';
+import { FootnoteContent, FootnoteContentItem, FootnoteEntry } from '../types/cmsFootnoteType.js';
 
 /**
  * Fetches and returns a FootnoteContentItem object with content and media if either exists, otherwise returns null.
@@ -22,9 +22,7 @@ async function getFootnoteContentItem(
   return { content: content || null, media };
 }
 
-export async function fetchFootnoteContent(
-  entryId: string
-): Promise<FootnoteContent> {
+export async function fetchFootnoteContent(entryId: string): Promise<FootnoteContent> {
   const entry: FootnoteEntry | undefined = await client.getEntry(entryId);
 
   if (!entry) {
@@ -41,10 +39,7 @@ export async function fetchFootnoteContent(
       entry.fields.kamalpreetSinghContent,
       entry.fields.kamalpreetSinghMedia?.sys.id
     ),
-    'Manglacharan': await getFootnoteContentItem(
-      entry.fields.manglacharanContent,
-      null
-    ),
+    Manglacharan: await getFootnoteContentItem(entry.fields.manglacharanContent, null),
   };
 
   return footnoteContent;

@@ -1,7 +1,7 @@
 ---
-import ChapterPreview from "../../components/ChapterPreview.svelte";
-import Layout from "../../layouts/Layout.astro";
-import ChapterRow from "../../components/ChapterRow.svelte";
+import ChapterPreview from '../../components/ChapterPreview.svelte';
+import Layout from '../../layouts/Layout.astro';
+import ChapterRow from '../../components/ChapterRow.svelte';
 
 const { id } = Astro.params;
 
@@ -66,7 +66,7 @@ const { chapters } = await chaptersRes.json();
               <ChapterRow
                 client:load
                 chapter={chapter}
-                bookEnTitle={book.enTitle}
+                bookName={book.enTitle}
                 index={chapter.id}
               />
             ))
