@@ -1,8 +1,8 @@
 ---
-import HighlightedTuk from "./HighlightedTuk.svelte";
-import { Pauri, Tuk } from "../types/appTypes";
-import ViewPauriFootnoteButton from "./ViewPauriFootnoteButton.svelte";
-import PauriWithTukTranslations from "./PauriWithTukTranslations.astro";
+import HighlightedTuk from './HighlightedTuk.svelte';
+import { Pauri, Tuk } from '../types/appTypes';
+import ViewPauriFootnoteButton from './ViewPauriFootnoteButton.svelte';
+import PauriWithTukTranslations from './PauriWithTukTranslations.astro';
 
 export interface Props {
   pauri: Pauri;
@@ -18,7 +18,8 @@ const hasPauriFootnote = pauri.footnote !== null;
     hasPauriTranslation ? (
       <div class="py-4">
         {pauri.tuks.map((tuk: Tuk, index) => {
-          const hasTukFootnote = tuk.drVirSinghFootnote || tuk.footnote;
+          const hasTukFootnote =
+            tuk.footnote?.bhaiVirSinghFootnote || tuk.footnote?.customFootnotes;
           const isLastTuk = index + 1 === pauri.tuks.length;
 
           return (
@@ -34,7 +35,7 @@ const hasPauriFootnote = pauri.footnote !== null;
                 <p class="leading-8 text-xl font-medium">
                   {tuk.content}
                   <span class="whitespace-nowrap">
-                    &nbsp;{isLastTuk ? `॥${pauri.number}॥` : "।"}
+                    &nbsp;{isLastTuk ? `॥${pauri.number}॥` : '।'}
                   </span>
                 </p>
               )}

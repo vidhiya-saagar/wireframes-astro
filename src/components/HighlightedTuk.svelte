@@ -4,24 +4,24 @@
     originalTuk,
     bhaiVirSinghFootnote,
     customFootnotes,
-  } from "../store/tukFootnoteStore";
+  } from '../store/tukFootnoteStore';
 
-  import type { Tuk } from "../types/appTypes";
+  import type { Tuk } from '../types/appTypes';
 
   export let tuk: Tuk;
   export let pauriNumber: number;
   export let isLastTuk: boolean;
 
-  function openSidePanel() {
+  function openTukFootnotes() {
     isOpen.set(true);
-    bhaiVirSinghFootnote.set(tuk.drVirSinghFootnote);
+    bhaiVirSinghFootnote.set(tuk.footnote?.bhaiVirSinghFootnote || null);
     originalTuk.set(tuk.originalContent);
-    customFootnotes.set(tuk.footnote?.customFootnotes);
+    customFootnotes.set(tuk.footnote?.customFootnotes || null);
   }
 </script>
 
-<button class="leading-8 text-xl cursor-pointer text-left" on:click={openSidePanel}>
+<button class="leading-8 text-xl cursor-pointer text-left" on:click={openTukFootnotes}>
   <span class="bg-gray-200 py-1">
-    {tuk.content}<span class="whitespace-nowrap">&nbsp;{isLastTuk ? `॥${pauriNumber}॥` : "।"}</span>
+    {tuk.content}<span class="whitespace-nowrap">&nbsp;{isLastTuk ? `॥${pauriNumber}॥` : '।'}</span>
   </span>
 </button>
