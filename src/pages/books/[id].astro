@@ -9,8 +9,6 @@ export function getStaticPaths() {
   return [
     // Book IDs
     { params: { id: 1 } },
-    { params: { id: 2 } },
-    { params: { id: 3 } },
   ];
 }
 
@@ -21,7 +19,8 @@ const bookRes = await fetch(`${API_URL}/books/${id}.json`);
 const { book } = await bookRes.json();
 
 const chaptersRes = await fetch(`${API_URL}/books/${id}/chapters.json`);
-const { chapters } = await chaptersRes.json();
+const allChapters = await chaptersRes.json();
+const chapters = allChapters.chapters.slice(0, 1);
 ---
 
 <Layout title="Book Name">
@@ -36,13 +35,11 @@ const { chapters } = await chaptersRes.json();
     </h1>
     <div class="flex justify-center">
       <p class="text-gray-800 my-9 text-center w-2/3">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a arcu sed mauris feugiat
-        luctus sit amet ut est.
+        At the moment, only the first chapter is available.
       </p>
     </div>
   </Fragment>
 
-  <!-- The <ChapterPreview /> (modal) lives inside the <ChapterRow /> -->
   <ChapterPreview client:load />
 
   <div class="flex my-16 lg:my-0 transition-all justify-center">
@@ -53,10 +50,7 @@ const { chapters } = await chaptersRes.json();
         <!-- More about this Granth -->
         <div class="hidden lg:block">
           <div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a arcu sed mauris
-              feugiat luctus sit amet ut est.
-            </p>
+            <p>There are two parts to Nanak Prakash. This is the first!</p>
           </div>
         </div>
         <!-- Container for Chapter List -->

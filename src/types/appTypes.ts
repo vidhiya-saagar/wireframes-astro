@@ -15,6 +15,7 @@ export type Chapter = {
   title: string;
   enTitle: string | null;
   enShortSummary: string | null;
+  enLongSummary: string | null;
   artworkUrl: string | null;
   book: Book;
   chhands: Chhand[];

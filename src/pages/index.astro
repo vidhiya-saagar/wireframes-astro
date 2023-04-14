@@ -5,7 +5,7 @@ import BookSlideshow from '../components/BookSlideshow.astro';
 import 'sant-lipi';
 ---
 
-<Layout title="SPG Wireframes">
+<Layout title="SPG (Beta) - Suraj Prakash Granth">
   <Fragment slot="extra-headers">
     <!-- Header image -->
     <div
@@ -14,12 +14,15 @@ import 'sant-lipi';
     </div>
     <h1 class="font-serif text-center italic text-4xl">Suraj Prakaash Granth</h1>
     <p class="text-center text-slate-900 mt-9">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a arcu sed mauris feugiat
-      luctus sit.
+      New website coming soon. In the meantime, you can read existing some translations on the
+      current <a
+        href="https://spg.dev/books"
+        class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">SPG Website</a
+      >.
     </p>
   </Fragment>
-  <div class="flex w-full justify-center">
-    <div class="my-3 lg:max-w-7xl flex flex-col items-center">
+  <div class="flex justify-center overflow-auto">
+    <div class="my-3 lg:max-w-7xl w-full flex flex-col items-center">
       <h2 class="italic font-serif py-2 text-lg">All Books</h2>
       <BookSlideshow />
 

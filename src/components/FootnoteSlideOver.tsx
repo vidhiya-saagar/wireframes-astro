@@ -4,6 +4,20 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useStore } from '@nanostores/react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
+import './styles/FootnoteSlideOver.css';
+import {
+  isOpen,
+  originalTuk,
+  bhaiVirSinghFootnote,
+  customFootnotes,
+} from '../store/tukFootnoteStore';
+
+const avatars = {
+  'Kamalpreet Singh':
+    'https://res.cloudinary.com/dip5mdxwe/image/upload/c_scale,w_64,h_64,q_auto/v1681488757/273458479_733618817604431_6653348205549108853_n_uiglgd.jpg',
+  'Vidhiya Saagar':
+    'https://res.cloudinary.com/dip5mdxwe/image/upload/c_scale,w_64,h_64,q_auto/v1681487920/logo_copy_gpjbxt.png',
+};
 
 const contentfulOptions = {
   renderNode: {
@@ -19,13 +33,6 @@ const contentfulOptions = {
     },
   },
 };
-import './styles/FootnoteSlideOver.css';
-import {
-  isOpen,
-  originalTuk,
-  bhaiVirSinghFootnote,
-  customFootnotes,
-} from '../store/tukFootnoteStore';
 
 export default function FootnoteSlideOver(): JSX.Element {
   const $isOpen = useStore(isOpen);
@@ -52,9 +59,9 @@ export default function FootnoteSlideOver(): JSX.Element {
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <div className="footnote-content flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                    <div className="px-4 sm:px-6">
+                    <div className="px-4 sm:px-6 mb-8">
                       <div className="flex items-start justify-between">
-                        <Dialog.Title className="dialog-title text-base font-semibold leading-6 text-gray-500">
+                        <Dialog.Title className="dialog-title text-base leading-6 text-gray-400">
                           Footnotes
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
@@ -71,9 +78,17 @@ export default function FootnoteSlideOver(): JSX.Element {
                     </div>
                     {/* Bhai Vir Singh Footnotes BELOW */}
                     {$bhaiVirSinghFootnote && (
-                      <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                        <p className="text-lg font-semibold py-2">Dr. Bhai Vir Singh</p>
-
+                      <div className="relative flex-1 px-4 sm:px-6">
+                        <div className="flex items-center mb-4">
+                          <img
+                            className="inline-block h-8 w-8 rounded-full mr-2"
+                            src="https://res.cloudinary.com/dip5mdxwe/image/upload/c_scale,w_64,h_64,q_auto/v1681489499/Bahi_Veer_Singh_izsrxv.png"
+                            alt="Avatar of Dr. Bhai Vir Singh"
+                            width="32"
+                            height="32"
+                          />
+                          <h4 style={{ marginBottom: 0 }}>Dr. Bhai Vir Singh:</h4>
+                        </div>
                         <blockquote className="relative">
                           <p className="text-gray-800 sm:text-xl dark:text-black">{$originalTuk}</p>
                         </blockquote>
@@ -93,15 +108,18 @@ export default function FootnoteSlideOver(): JSX.Element {
                     {$customFootnotes && (
                       <div className="relative flex-1 px-4 sm:px-6">
                         {Object.entries($customFootnotes).map(([key, value]) => {
+                          const avatar = avatars[key];
+                          console.log('avatar', avatar);
                           if (value !== null) {
                             return (
                               <div key={key}>
                                 <div className="flex items-center mb-4">
                                   <img
                                     className="inline-block h-8 w-8 rounded-full mr-2"
-                                    src="https://i.postimg.cc/x8kb5d3C/image.png"
+                                    src={avatar}
                                     alt={`Avatar of ${key}`}
-                                    loading="lazy"
+                                    width="32"
+                                    height="32"
                                   />
                                   <h4 style={{ marginBottom: 0 }}>{key}:</h4>
                                 </div>
