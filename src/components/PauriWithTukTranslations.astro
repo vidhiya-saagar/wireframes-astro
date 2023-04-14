@@ -35,15 +35,15 @@ const hasPauriFootnote = pauri.footnote !== null;
                 {tuk.content}
                 <span>{isLastTuk ? `॥${pauri.number}॥` : ' ।'}</span>
               </p>
-
-              {tuk.translation && (
-                <p class="leading-8 text-lg italic font-sans">
-                  {tuk.translation?.enTranslation}
-                  <span>{isLastTuk ? ` ||${pauri.number}||` : ' |'}</span>
-                </p>
-              )}
             </>
           )}
+          {tuk.translation && (
+            <p class="leading-8 text-lg font-serif text-stone-800">
+              {tuk.translation?.enTranslation}
+              <span>{isLastTuk ? ` ||${pauri.number}||` : ' |'}</span>
+            </p>
+          )}
+
           {hasPauriFootnote && isLastTuk && (
             <ViewPauriFootnoteButton pauri={pauri} client:visible />
           )}
