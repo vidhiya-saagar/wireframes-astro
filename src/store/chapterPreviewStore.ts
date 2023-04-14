@@ -6,6 +6,7 @@ interface ChapterInfo {
   title: string;
   enTitle: string;
   enShortSummary: string;
+  enLongSummary: string | null;
   artworkUrl: string;
   bookName: string;
 }

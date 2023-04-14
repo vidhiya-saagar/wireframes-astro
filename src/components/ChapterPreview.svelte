@@ -76,18 +76,24 @@
             </h3>
 
             <div class="my-8 flex justify-center items-center">
-              <div class="rounded-full p-24 sm:p-36 bg-slate-400" />
+              <div class="rounded-full p-24 sm:p-36 bg-slate-400 relative">
+                <img
+                  alt="Chapter artwork"
+                  src={$chapterToDisplay?.artworkUrl}
+                  class="absolute inset-0 h-full w-full object-cover rounded-full"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </div>
             </div>
-            <div class="mt-2">
-              <p class="text-sm text-gray-500">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a arcu sed mauris
-                feugiat luctus sit amet ut est. Praesent eros dolor, faucibus ac semper vel,
-                sollicitudin ac ipsum. Duis suscipit eu dui vitae ullamcorper. Aenean venenatis
-                fermentum ullamcorper. Sed quis enim tempus, vehicula dui vitae, sollicitudin velit.
-                Duis vel rutrum ante. Nunc quis dui molestie, venenatis enim ac, consectetur quam.
-                Quisque faucibus auctor bibendum. Morbi pellentesque est eget erat tincidunt, et
-                faucibus nunc ultrices. Nulla congue arcu et scelerisque iaculis.
-              </p>
+            <div class="mt-2 text-left">
+              {#if $chapterToDisplay?.enLongSummary}
+                {#each $chapterToDisplay.enLongSummary.split('\n') as p}
+                  <p class="my-2">{p}</p>
+                {/each}
+              {:else}
+                <p>Failed to load chapter summary.</p>
+              {/if}
             </div>
           </div>
         </div>

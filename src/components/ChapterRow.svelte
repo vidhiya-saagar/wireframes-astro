@@ -4,7 +4,6 @@
 
   export let chapter: Chapter = null;
   export let bookName: string = '';
-  export let index = 1;
   export let description =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac orci ultricies, viverra tellus sit amet, lobortis elit. Aliquam erat volutpat. Sed metus turpis, rutrum eu varius non, bibendum quis libero. Invulputate.';
 
@@ -27,7 +26,15 @@
       </button>
     </div>
 
-    <p>{description}</p>
+    <p>{chapter.enShortSummary || description}</p>
   </div>
-  <div class="bg-slate-300 h-32 w-28" />
+  <div class="bg-slate-300 h-32 w-28 relative">
+    <img
+      alt={`Artwork for chapter ${chapter.number}`}
+      src={chapter.artworkUrl}
+      class="absolute inset-0 h-full w-full object-cover"
+      decoding="async"
+      loading="lazy"
+    />
+  </div>
 </div>

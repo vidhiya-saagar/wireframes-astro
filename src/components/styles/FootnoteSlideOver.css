@@ -30,8 +30,9 @@
   font-size: 32px;
 }
 
-.footnote-content .dialog-title {
-  font-size: 32px;
+.footnote-content h2.dialog-title {
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .footnote-content h3 {
@@ -80,15 +81,6 @@
   box-shadow: inset 3px 0 0 0 rgba(41, 41, 41, 1);
 }
 
-/* .footnote-content blockquote:before {
-  content: '“';
-  font-size: 40px;
-  position: absolute;
-  left: 0;
-  top: -10px;
-  color: #666;
-} */
-
 .footnote-content a {
   color: rgb(41, 41, 41); /* Custom link color */
   text-decoration: none;
@@ -97,6 +89,50 @@
   border-bottom: 1px solid rgba(41, 41, 41, 1);
 }
 
-.foote-content a:hover {
+.footnote-content a:hover {
   border-bottom: 1px solid rgba(41, 41, 41, 0.7); /* Darker underline on hover */
+}
+
+/* List */
+.footnote-content ol,
+.footnote-content ul {
+  margin: 1.5em 0;
+}
+
+.footnote-content li {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 0.5em;
+  position: relative;
+  padding-left: 1.5em;
+}
+
+.footnote-content li p {
+  display: inline;
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.footnote-content ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #555;
+}
+
+.footnote-content ol {
+  counter-reset: list-counter;
+}
+
+.footnote-content ol li::before {
+  content: counter(list-counter) '.';
+  counter-increment: list-counter;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+  color: #555;
+  font-size: 1em;
 }

@@ -1,18 +1,17 @@
 ---
 import books from './books.json';
 
-const description =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a arcu sed mauris feugiat luctus sit amet ut.';
+const description = 'Coming soon.';
 ---
 
 <div class="relative w-full flex gap-6 snap-x snap-proximity overflow-x-auto pb-14">
   {
-    books.map((book) => (
+    books.map((book, i) => (
       <div class="snap-center shrink-0 first:pl-8 last:pr-8">
         <div class="bg-slate-300 w-64 h-80" />
         <div class="py-3 space-y-2 w-64 text-slate-900 text-center">
           <p class="font-serif font-semibold text-slate-800">{book.en_title}</p>
-          <p>{description}</p>
+          <p>{i === 0 ? 'Chapter 1 is available.' : description}</p>
         </div>
       </div>
     ))
