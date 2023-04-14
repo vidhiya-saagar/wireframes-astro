@@ -1,8 +1,8 @@
 ---
-import FootnoteSlideOver from "../../components/FootnoteSlideOver";
-import Pauri from "../../components/Pauri.astro";
-import Layout from "../../layouts/Layout.astro";
-import { fetchFootnoteContent } from "../../helpers/fetchFootnoteContent";
+import FootnoteSlideOver from '../../components/FootnoteSlideOver';
+import Pauri from '../../components/Pauri.astro';
+import Layout from '../../layouts/Layout.astro';
+import { fetchFootnoteContent } from '../../helpers/fetchFootnoteContent';
 
 export const getStaticPaths = async () => {
   const API_URL = import.meta.env.API_URL;
@@ -43,17 +43,21 @@ const footnotePromises = [];
 
 for (const chhand of chapter.chhands) {
   for (const pauri of chhand.pauris) {
-    if (pauri.footnote?.entryId) {
-      const promise = fetchFootnoteContent(pauri.footnote.entryId).then((customFootnotes) => {
-        pauri.footnote.customFootnotes = customFootnotes;
-      });
+    if (pauri.footnote?.contentfulEntryId) {
+      const promise = fetchFootnoteContent(pauri.footnote.contentfulEntryId).then(
+        (customFootnotes) => {
+          pauri.footnote.customFootnotes = customFootnotes;
+        }
+      );
       footnotePromises.push(promise);
     }
     for (const tuk of pauri.tuks) {
-      if (tuk.footnote?.entryId) {
-        const promise = fetchFootnoteContent(tuk.footnote.entryId).then((customFootnotes) => {
-          tuk.footnote.customFootnotes = customFootnotes;
-        });
+      if (tuk.footnote?.contentfulEntryId) {
+        const promise = fetchFootnoteContent(tuk.footnote.contentfulEntryId).then(
+          (customFootnotes) => {
+            tuk.footnote.customFootnotes = customFootnotes;
+          }
+        );
         footnotePromises.push(promise);
       }
     }

@@ -1,12 +1,20 @@
 <script lang="ts">
-  import { isOpen, originalPauriTuks, customFootnotes } from "../store/tukFootnoteStore";
+  import {
+    isOpen,
+    originalPauriTuks,
+    customFootnotes,
+    bhaiVirSinghFootnote,
+    originalTuk,
+  } from '../store/tukFootnoteStore';
 
-  import type { Pauri } from "../types/appTypes";
+  import type { Pauri } from '../types/appTypes';
 
   export let pauri: Pauri;
 
-  function openSidePanel() {
+  function openPauriFootnote() {
     isOpen.set(true);
+    bhaiVirSinghFootnote.set(null); // Bhai Vir Singh footnote is not available for pauri, yet!
+    originalTuk.set(null);
     originalPauriTuks.set(pauri.tuks);
     customFootnotes.set(pauri.footnote.customFootnotes);
   }
@@ -15,7 +23,7 @@
 <button
   type="button"
   class="rounded bg-indigo-50 py-1 px-2 text-xs font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100 font-sans mt-4"
-  on:click={openSidePanel}
+  on:click={openPauriFootnote}
 >
   View Footnote for Pauri {pauri.number}
 </button>

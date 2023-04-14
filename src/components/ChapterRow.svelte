@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { isOpen, chapterToDisplay } from "../store/chapterPreviewStore";
-  import type { Chapter } from "../types/appTypes";
+  import { isOpen, chapterToDisplay } from '../store/chapterPreviewStore';
+  import type { Chapter } from '../types/appTypes';
 
   export let chapter: Chapter = null;
-  export let bookName: string = "";
+  export let bookName: string = '';
   export let index = 1;
   export let description =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac orci ultricies, viverra tellus sit amet, lobortis elit. Aliquam erat volutpat. Sed metus turpis, rutrum eu varius non, bibendum quis libero. Invulputate.";
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac orci ultricies, viverra tellus sit amet, lobortis elit. Aliquam erat volutpat. Sed metus turpis, rutrum eu varius non, bibendum quis libero. Invulputate.';
 
   function updateStateForModal() {
-    const container: HTMLElement = document.querySelector(".chapter-preview-container");
-    container.style.display = "";
+    const container: HTMLElement = document.querySelector('.chapter-preview-container');
+    container.style.display = '';
     isOpen.set(true);
     chapterToDisplay.set({ ...chapter, bookName });
   }

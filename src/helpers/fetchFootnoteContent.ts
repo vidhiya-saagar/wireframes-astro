@@ -44,3 +44,9 @@ export async function fetchFootnoteContent(entryId: string): Promise<FootnoteCon
 
   return footnoteContent;
 }
+
+export const editorMetadata = {
+  'Kamalpreet Singh': {
+    avatar: 'https://i.postimg.cc/x8kb5d3C/image.png',
+  },
+};

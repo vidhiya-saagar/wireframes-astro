@@ -1,8 +1,8 @@
 ---
-import HighlightedTuk from "./HighlightedTuk.svelte";
-import { Pauri } from "../types/appTypes";
-import ViewPauriFootnoteButton from "./ViewPauriFootnoteButton.svelte";
-import PauriWithTukTranslations from "./PauriWithTukTranslations.astro";
+import HighlightedTuk from './HighlightedTuk.svelte';
+import { Pauri, Tuk } from '../types/appTypes';
+import ViewPauriFootnoteButton from './ViewPauriFootnoteButton.svelte';
+import PauriWithTukTranslations from './PauriWithTukTranslations.astro';
 
 export interface Props {
   pauri: Pauri;
@@ -17,10 +17,9 @@ const hasPauriFootnote = pauri.footnote !== null;
 
 <>
   {
-    pauri.tuks.map((tuk, index) => {
-      const hasTukFootnote = tuk.drVirSinghFootnote || tuk.footnote;
+    pauri.tuks.map((tuk: Tuk, index) => {
+      const hasTukFootnote = tuk.footnote?.bhaiVirSinghFootnote || tuk.footnote?.customFootnotes;
       const isLastTuk = index + 1 === pauri.tuks.length;
-
       return (
         <div class={`py-${tukPaddingValue}`}>
           {hasTukFootnote ? (
@@ -34,13 +33,13 @@ const hasPauriFootnote = pauri.footnote !== null;
             <>
               <p class="leading-8 text-xl font-medium">
                 {tuk.content}
-                <span>{isLastTuk ? `॥${pauri.number}॥` : " ।"}</span>
+                <span>{isLastTuk ? `॥${pauri.number}॥` : ' ।'}</span>
               </p>
 
               {tuk.translation && (
                 <p class="leading-8 text-lg italic font-sans">
                   {tuk.translation?.enTranslation}
-                  <span>{isLastTuk ? ` ||${pauri.number}||` : " |"}</span>
+                  <span>{isLastTuk ? ` ||${pauri.number}||` : ' |'}</span>
                 </p>
               )}
             </>

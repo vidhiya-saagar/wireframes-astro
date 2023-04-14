@@ -1,3 +1,4 @@
+import { bhaiVirSinghFootnote } from './../store/tukFootnoteStore';
 import { FootnoteContent as CustomFootnote } from './cmsFootnoteType';
 export type Book = {
   id: number;
@@ -41,7 +42,8 @@ export type Translation = {
 };
 
 export type Footnote = {
-  entryId: string;
+  bhaiVirSinghFootnote: string;
+  contentfulEntryId: string;
   customFootnotes?: CustomFootnote;
 };
 
@@ -50,7 +52,6 @@ export type Tuk = {
   sequence: number;
   content: string;
   originalContent: string;
-  drVirSinghFootnote: string | null;
   translation: Translation | null;
   footnote: Footnote | null;
 };

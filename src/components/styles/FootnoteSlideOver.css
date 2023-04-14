@@ -30,6 +30,10 @@
   font-size: 32px;
 }
 
+.footnote-content .dialog-title {
+  font-size: 32px;
+}
+
 .footnote-content h3 {
   font-size: 28px;
   font-family: 'Helvetica', 'Arial', sans-serif;
@@ -70,19 +74,20 @@
   font-weight: italic;
   line-height: 1.4;
   margin: 1.5em 0;
-  padding-left: 2.5em;
+  padding-left: 1.5em;
   position: relative;
   color: #666;
+  box-shadow: inset 3px 0 0 0 rgba(41, 41, 41, 1);
 }
 
-.footnote-content blockquote:before {
+/* .footnote-content blockquote:before {
   content: '“';
   font-size: 40px;
   position: absolute;
   left: 0;
   top: -10px;
   color: #666;
-}
+} */
 
 .footnote-content a {
   color: rgb(41, 41, 41); /* Custom link color */

@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { isOpen, chapterToDisplay } from "../store/chapterPreviewStore";
+  import { isOpen, chapterToDisplay } from '../store/chapterPreviewStore';
 
   function closeModal() {
-    const container: HTMLElement = document.querySelector(".chapter-preview-container");
+    const container: HTMLElement = document.querySelector('.chapter-preview-container');
     isOpen.set(false);
     setTimeout(function displayNoneOnModal() {
-      container.style.display = "none";
+      container.style.display = 'none';
     }, 300);
   }
 </script>
 
 <div
-  class={`chapter-preview-container relative z-10 ${$isOpen ? "open" : "close"}`}
+  class={`chapter-preview-container relative z-10 ${$isOpen ? 'open' : 'close'}`}
   aria-labelledby="modal-title"
   role="dialog"
   aria-modal="true"
@@ -69,10 +69,10 @@
           <!-- <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"> -->
           <div class="mt-3 text-center">
             <h4 class="text-base text-center">
-              {$chapterToDisplay?.bookName || "Book Name"}
+              {$chapterToDisplay?.bookName || 'Book Name'}
             </h4>
             <h3 class="text-2xl p-2 font-semibold leading-6 text-gray-900 text-center">
-              {$chapterToDisplay?.title || "Chapter Title"}
+              {$chapterToDisplay?.title || 'Chapter Title'}
             </h3>
 
             <div class="my-8 flex justify-center items-center">
