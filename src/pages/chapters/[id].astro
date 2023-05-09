@@ -11,13 +11,13 @@ export const getStaticPaths = async () => {
     const res = await fetch(`${API_URL}/books/${bookId}/chapters.json`);
     const { chapters } = await res.json();
 
-    // return chapters.map((chapter) => chapter.id);
-    return [1, 2, 3]; // Return only one chapter for now
+    return chapters.map((chapter) => chapter.id);
   };
 
   const getAllChapterIds = async (bookIds) => {
-    const chapterIds = await Promise.all(bookIds.map((bookId) => getChapterIds(bookId)));
-    return chapterIds.flat();
+    // const chapterIds = await Promise.all(bookIds.map((bookId) => getChapterIds(bookId)));
+    // return chapterIds.flat();
+    return [1, 2]; // Return only one chapter for now
   };
 
   const bookIds = [1]; // Only one book for now
@@ -74,7 +74,7 @@ await Promise.all(footnotePromises);
         {chapter.title}
       </h1>
       <h2 class="font-serif py-2 font-medium text-center">
-        Chapter #{chapter.number} of {chapter.book.enTitle}
+        Chapter #{chapter.number} of {chapter.book?.enTitle}
       </h2>
     </div>
   </div>
