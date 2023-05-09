@@ -20,7 +20,7 @@ const { book } = await bookRes.json();
 
 const chaptersRes = await fetch(`${API_URL}/books/${id}/chapters.json`);
 const allChapters = await chaptersRes.json();
-const chapters = allChapters.chapters.slice(0, 1);
+const chapters = allChapters.chapters.slice(0, 2);
 ---
 
 <Layout title="Book Name">
