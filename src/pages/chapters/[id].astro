@@ -2,7 +2,13 @@
 import FootnoteSlideOver from '../../components/FootnoteSlideOver';
 import Pauri from '../../components/Pauri.astro';
 import Layout from '../../layouts/Layout.astro';
+import type { Chapter } from '../../types/appTypes';
 import { fetchFootnoteContent } from '../../helpers/fetchFootnoteContent';
+import { v2 as cloudinary } from 'cloudinary';
+
+type ChapterResponse = {
+  chapter: Chapter;
+};
 
 export const getStaticPaths = async () => {
   const API_URL = import.meta.env.API_URL;
@@ -15,16 +21,54 @@ export const getStaticPaths = async () => {
   };
 
   const getAllChapterIds = async (bookIds) => {
-    // const chapterIds = await Promise.all(bookIds.map((bookId) => getChapterIds(bookId)));
-    // return chapterIds.flat();
-    return [1, 2]; // Return only one chapter for now
+    const chapterIds = await Promise.all(bookIds.map((bookId) => getChapterIds(bookId)));
+    return chapterIds.flat();
   };
 
-  const bookIds = [1]; // Only one book for now
+  const bookIds = [1, 15]; // Only Nanak Prakash 1 and Rut 6
   const chapterIds = await getAllChapterIds(bookIds);
 
   return chapterIds.map((id) => ({ params: { id } }));
 };
+
+// Configuration (ideally, do this once at the start of your application)
+cloudinary.config({
+  cloud_name: 'dip5mdxwe',
+  api_key: '372559788875336',
+  api_secret: 'TEoM_l8DkEDvMPqvdSe_JIA_NvM',
+});
+
+function generateOGImage({ artworkUrl, enTitle, book, number, id }) {
+  // Check if the provided URL is a Cloudinary URL
+  if (artworkUrl.includes('res.cloudinary.com')) {
+    const publicId = artworkUrl.split('/').pop().split('.')[0]; // Extracts the public ID from the URL
+
+    // Generate the transformed URL using the SDK
+    const imageUrl = cloudinary.url(publicId, {
+      transformation: [
+        { effect: 'colorize', color: 'black', opacity: 30 },
+        {
+          overlay: {
+            font_family: 'Playfair Display',
+            font_weight: 'bold',
+            font_style: 'italic',
+            text: 'Suraj Prakash Granth',
+            font_size: 100,
+          },
+          color: '#F4FFFD',
+          y: -250,
+        },
+        // Other text layers can be added similarly
+        // { overlay: { font_family: 'sans', text: encodeURIComponent(`${book.enTitle} - Chapter #${number}`) }, color: '#F4FFFD', y: -200 },
+        // { overlay: { font_family: 'sans', text: encodeURIComponent(enTitle) }, color: '#F4FFFD', y: 0 },
+        // { overlay: { font_family: 'sans', text: encodeURIComponent(`Explore now on https://spg.dev/chapters/${id}`) }, color: '#F4FFFD', y: 200 }
+      ],
+    });
+
+    // If it's not a Cloudinary URL, return the original URL
+    return imageUrl;
+  }
+}
 
 /**
  * Fetch content for the chapter
@@ -34,7 +78,8 @@ const { id } = Astro.params;
 const API_URL = import.meta.env.API_URL;
 
 const chapterContentRes = await fetch(`${API_URL}/chapters/${id}/content.json`);
-const { chapter } = await chapterContentRes.json();
+
+const { chapter }: ChapterResponse = await chapterContentRes.json();
 
 /**
  * Fetch footnotes for each Pauri and Tuk
@@ -67,11 +112,45 @@ for (const chhand of chapter.chhands) {
 await Promise.all(footnotePromises);
 ---
 
-<Layout title={`SPG - Chapter ${chapter.number} - ${chapter.title}`}>
+<Layout title={`SPG - Chapter ${chapter.number} - ${chapter.enTitle}`}>
+  <Fragment slot="extra-headers">
+    <!-- SEO Meta Tags -->
+
+    <!-- Social Media & Open Graph Meta Tags -->
+    <meta property="og:title" content=`${chapter.enTitle}` />
+    <meta property="og:description" content=`${chapter.enShortSummary}` />
+    <meta property="og:image" content={`${generateOGImage(chapter)}`} />
+    <!-- Dynamically replace {title} with the chapter's title in the above image URL to display the title on the image -->
+    <meta property="og:url" content="https://spg.dev" />
+    <!-- Replace {your_website_url} with the actual URL of the chapter -->
+    <meta property="og:type" content="article" />
+
+    <!-- Twitter Card Meta Tags (if you want a specific card format for Twitter) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content=`${chapter.enTitle}` />
+    <meta name="twitter:description" content=`${chapter.enShortSummary}` />
+    <meta name="twitter:image" content={`${generateOGImage(chapter)}`} />
+    <!-- Note: Twitter uses its own set of meta tags. They are similar to the OG tags but are specifically used by Twitter -->
+
+    <!-- Header Image -->
+    <div
+      class="relative flex w-full h-56 bg-gradient-to-b from-[#C4C4C4] to-transparent sm:h-80 transition-all"
+    >
+    </div>
+    <h1 class="font-serif font-bold italic text-center text-2xl">
+      {chapter.book.enTitle}
+    </h1>
+    <div class="flex justify-center">
+      <p class="text-gray-800 my-9 text-center w-2/3">
+        {chapter.book.enSynopsis}
+      </p>
+    </div>
+  </Fragment>
+
   <div class="flex w-full justify-center">
     <div class="my-3 lg:max-w-7xl flex flex-col items-center">
       <h1 class="italic font-serif py-2 text-xl font-semibold text-center">
-        {chapter.title}
+        {chapter.enTitle}
       </h1>
       <h2 class="font-serif py-2 font-medium text-center">
         Chapter #{chapter.number} of {chapter.book?.enTitle}

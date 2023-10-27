@@ -1,6 +1,10 @@
-import { Document } from '@contentful/rich-text-types';
+import type { Document } from '@contentful/rich-text-types';
 import { client } from './contentful.js';
-import { FootnoteContent, FootnoteContentItem, FootnoteEntry } from '../types/cmsFootnoteType.js';
+import type {
+  FootnoteContent,
+  FootnoteContentItem,
+  FootnoteEntry,
+} from '../types/cmsFootnoteType.js';
 
 /**
  * Fetches and returns a FootnoteContentItem object with content and media if either exists, otherwise returns null.
