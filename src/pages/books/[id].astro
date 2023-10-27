@@ -9,6 +9,7 @@ export function getStaticPaths() {
   return [
     // Book IDs
     { params: { id: 1 } },
+    { params: { id: 15 } },
   ];
 }
 
@@ -20,7 +21,7 @@ const { book } = await bookRes.json();
 
 const chaptersRes = await fetch(`${API_URL}/books/${id}/chapters.json`);
 const allChapters = await chaptersRes.json();
-const chapters = allChapters.chapters.slice(0, 2);
+const chapters = allChapters.chapters;
 ---
 
 <Layout title="Book Name">

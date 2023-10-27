@@ -1,5 +1,4 @@
-import { bhaiVirSinghFootnote } from './../store/tukFootnoteStore';
-import { FootnoteContent as CustomFootnote } from './cmsFootnoteType';
+import type { FootnoteContent as CustomFootnote } from './cmsFootnoteType';
 export type Book = {
   id: number;
   title: string;

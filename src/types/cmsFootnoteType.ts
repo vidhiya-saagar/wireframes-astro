@@ -1,5 +1,7 @@
-import { Entry, Asset } from 'contentful';
-import { Document } from '@contentful/rich-text-types';
+import type { Entry } from 'contentful';
+import type { Asset } from 'contentful';
+import type { Document } from '@contentful/rich-text-types';
+// import { Document } from '@contentful/rich-text-types';
 
 export interface FootnoteContentItem {
   content: Document | null;
