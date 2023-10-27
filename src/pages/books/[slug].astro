@@ -2,22 +2,31 @@
 import ChapterPreview from '../../components/ChapterPreview.svelte';
 import Layout from '../../layouts/Layout.astro';
 import ChapterRow from '../../components/ChapterRow.svelte';
+import type { Book } from '../../types/appTypes';
+import booksJSON from '../../components/books.json';
 
-const { id } = Astro.params;
+const { slug } = Astro.params;
 
 export function getStaticPaths() {
   return [
     // Book IDs
-    { params: { id: 1 } },
-    { params: { id: 15 } },
+    { params: { slug: 'nanak-prakash-purbardh' } },
+    { params: { slug: 'raas-12' } },
+    { params: { slug: 'rut-1' } },
+    { params: { slug: 'rut-6' } },
   ];
 }
 
 const API_URL = import.meta.env.API_URL;
 
+// Get Book ID from `slug` (We should probably save slug in the DB).
+console.log('slug', slug);
+const id = booksJSON.find((book) => book.slug === slug).id;
+console.log('id', id);
+
 // Fetch Chapters for the Book
 const bookRes = await fetch(`${API_URL}/books/${id}.json`);
-const { book } = await bookRes.json();
+const book: Book = (await bookRes.json()).book;
 
 const chaptersRes = await fetch(`${API_URL}/books/${id}/chapters.json`);
 const allChapters = await chaptersRes.json();
@@ -35,8 +44,8 @@ const chapters = allChapters.chapters;
       {book.enTitle}
     </h1>
     <div class="flex justify-center">
-      <p class="text-gray-800 my-9 text-center w-2/3">
-        At the moment, only the first chapter is available.
+      <p class="text-gray-800 my-9 text-center w-2/3 text-xl">
+        {book.enShortSummary}
       </p>
     </div>
   </Fragment>
@@ -49,21 +58,16 @@ const chapters = allChapters.chapters;
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <!-- More about this Granth -->
-        <div class="hidden lg:block">
+        <div class="hidden lg:block mt-8">
           <div>
-            <p>There are two parts to Nanak Prakash. This is the first!</p>
+            <p><strong>{chapters.length}</strong> chapters available. More to come!</p>
           </div>
         </div>
         <!-- Container for Chapter List -->
         <div class="mt-10 lg:mt-0">
           {
-            chapters.map((chapter, i) => (
-              <ChapterRow
-                client:load
-                chapter={chapter}
-                bookName={book.enTitle}
-                index={chapter.id}
-              />
+            chapters.map((chapter) => (
+              <ChapterRow client:load chapter={chapter} bookName={book.enTitle} />
             ))
           }
         </div>

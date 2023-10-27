@@ -25,49 +25,111 @@ export const getStaticPaths = async () => {
     return chapterIds.flat();
   };
 
-  const bookIds = [1, 15]; // Only Nanak Prakash 1 and Rut 6
+  /**
+   * - nanak-prakash-purbardh => 1
+   * - raas-12                => 14
+   * - rut-1                  => 15
+   * - rut-6                  => 20
+   */
+  const bookIds = [1, 14, 15, 20];
   const chapterIds = await getAllChapterIds(bookIds);
 
   return chapterIds.map((id) => ({ params: { id } }));
 };
 
-// Configuration (ideally, do this once at the start of your application)
 cloudinary.config({
-  cloud_name: 'dip5mdxwe',
-  api_key: '372559788875336',
-  api_secret: 'TEoM_l8DkEDvMPqvdSe_JIA_NvM',
+  cloud_name: import.meta.env.CLOUDINARY_CLOUD_NAME,
+  api_key: import.meta.env.CLOUDINARY_API_KEY,
+  api_secret: import.meta.env.CLOUDINARY_API_SECRET,
 });
 
+// TODO: Figure out this stuff later...
 function generateOGImage({ artworkUrl, enTitle, book, number, id }) {
   // Check if the provided URL is a Cloudinary URL
   if (artworkUrl.includes('res.cloudinary.com')) {
-    const publicId = artworkUrl.split('/').pop().split('.')[0]; // Extracts the public ID from the URL
+    const parts = artworkUrl.split('/');
+    const fileName = parts.pop().split('.')[0];
+    const folder = parts.pop();
+    const publicId = `${folder}/${fileName}`;
 
-    // Generate the transformed URL using the SDK
+    // Individual transformations
+    const baseTransform = { width: 1200, height: 627, crop: 'fill' };
+    const darkOverlay = {
+      effect: 'brightness:-80', // Adjust to the desired level.
+    };
+    const granthTitleOverlay = {
+      overlay: {
+        font_family: 'Playfair Display',
+        font_weight: 'italic',
+        font_size: 40,
+        text: 'Suraj Prakash Granth',
+      },
+      color: '#F4FFFD',
+      y: -250,
+    };
+    const bookChapterOverlay = {
+      overlay: {
+        font_family: 'Playfair Display',
+        font_weight: 'black',
+        font_size: 30,
+        text: `${book.enTitle} - Chapter #${number}`,
+      },
+      color: '#F4FFFD',
+      y: -200,
+    };
+
+    const chapterTitleOverlay = {
+      overlay: {
+        font_family: 'Playfair Display',
+        font_weight: 'bold italic',
+        font_size: 70,
+        text: enTitle,
+        width: 900,
+        crop: 'fit',
+      },
+      color: '#F4FFFD',
+      y: 0,
+    };
+
+    const readNowOverlay = {
+      overlay: {
+        font_family: 'Sarabun',
+        font_weight: 'black',
+        font_size: 40,
+        text: `Read now with English Translations`,
+      },
+      color: '#E7DED0',
+      y: 200,
+    };
+
+    const urlOverlay = {
+      overlay: {
+        font_family: 'Sarabun',
+        font_weight: 'black',
+        font_size: 30,
+        text: `https://spg.dev/chapters/${id}`,
+      },
+      color: '#E7DED0',
+      y: 250,
+    };
+
+    // Generate URL with chained transformations
     const imageUrl = cloudinary.url(publicId, {
       transformation: [
-        { effect: 'colorize', color: 'black', opacity: 30 },
-        {
-          overlay: {
-            font_family: 'Playfair Display',
-            font_weight: 'bold',
-            font_style: 'italic',
-            text: 'Suraj Prakash Granth',
-            font_size: 100,
-          },
-          color: '#F4FFFD',
-          y: -250,
-        },
-        // Other text layers can be added similarly
-        // { overlay: { font_family: 'sans', text: encodeURIComponent(`${book.enTitle} - Chapter #${number}`) }, color: '#F4FFFD', y: -200 },
-        // { overlay: { font_family: 'sans', text: encodeURIComponent(enTitle) }, color: '#F4FFFD', y: 0 },
-        // { overlay: { font_family: 'sans', text: encodeURIComponent(`Explore now on https://spg.dev/chapters/${id}`) }, color: '#F4FFFD', y: 200 }
+        baseTransform,
+        darkOverlay,
+        granthTitleOverlay,
+        bookChapterOverlay,
+        chapterTitleOverlay,
+        readNowOverlay,
+        urlOverlay,
       ],
     });
 
-    // If it's not a Cloudinary URL, return the original URL
     return imageUrl;
   }
+  // If it's not a Cloudinary URL, return the original URL
+  return artworkUrl;
 }
 
 /**
@@ -117,7 +179,10 @@ await Promise.all(footnotePromises);
     <!-- SEO Meta Tags -->
 
     <!-- Social Media & Open Graph Meta Tags -->
-    <meta property="og:title" content=`${chapter.enTitle}` />
+    <meta
+      property="og:title"
+      content=`Read Chapter #${chapter.number} - ${chapter.enTitle} (English Translations)`
+    />
     <meta property="og:description" content=`${chapter.enShortSummary}` />
     <meta property="og:image" content={`${generateOGImage(chapter)}`} />
     <!-- Dynamically replace {title} with the chapter's title in the above image URL to display the title on the image -->
@@ -127,7 +192,10 @@ await Promise.all(footnotePromises);
 
     <!-- Twitter Card Meta Tags (if you want a specific card format for Twitter) -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content=`${chapter.enTitle}` />
+    <meta
+      name="twitter:title"
+      content=`Read Chapter #${chapter.number} - ${chapter.enTitle} (English Translations)`
+    />
     <meta name="twitter:description" content=`${chapter.enShortSummary}` />
     <meta name="twitter:image" content={`${generateOGImage(chapter)}`} />
     <!-- Note: Twitter uses its own set of meta tags. They are similar to the OG tags but are specifically used by Twitter -->
@@ -172,7 +240,7 @@ await Promise.all(footnotePromises);
         return (
           <div>
             <h3 class="font-serif text-xl text-gray-700">{chhand.name}</h3>
-            {chhand.pauris.slice(0, 5).map((pauri) => (
+            {chhand.pauris.map((pauri) => (
               <div class="mb-10 text-left">
                 <Pauri pauri={pauri} />
               </div>
