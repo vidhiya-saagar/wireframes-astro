@@ -2,111 +2,133 @@
   {
     "id": 1,
     "en_title": "Sri Nanak Parkash 1",
-    "title": "ਸ੍ਰੀ ਨਾਨਕ ਪ੍ਰਕਾਸ਼ ਪੂਰਬਾਰਧ"
+    "title": "ਸ੍ਰੀ ਨਾਨਕ ਪ੍ਰਕਾਸ਼ ਪੂਰਬਾਰਧ",
+    "slug": "nanak-prakash-purbardh"
   },
   {
     "id": 2,
     "en_title": "Sri Nanak Parkash 2",
-    "title": "ਸ੍ਰੀ ਨਾਨਕ ਪ੍ਰਕਾਸ਼ ਉੱੱਤਰਾਰਧ"
+    "title": "ਸ੍ਰੀ ਨਾਨਕ ਪ੍ਰਕਾਸ਼ ਉੱੱਤਰਾਰਧ",
+    "slug": "nanak-prakash-utrardh"
   },
   {
     "id": 3,
     "en_title": "Raas 1",
-    "title": "ਰਾਸਿ ੧"
+    "title": "ਰਾਸਿ ੧",
+    "slug": "raas-1"
   },
   {
     "id": 4,
     "en_title": "Raas 2",
-    "title": "ਰਾਸਿ ੨"
+    "title": "ਰਾਸਿ ੨",
+    "slug": "raas-2"
   },
   {
     "id": 5,
     "en_title": "Raas 3",
-    "title": "ਰਾਸਿ ੩"
+    "title": "ਰਾਸਿ ੩",
+    "slug": "raas-3"
   },
   {
     "id": 6,
     "en_title": "Raas 4",
-    "title": "ਰਾਸਿ ੪"
+    "title": "ਰਾਸਿ ੪",
+    "slug": "raas-4"
   },
   {
     "id": 7,
     "en_title": "Raas 5",
-    "title": "ਰਾਸਿ ੫"
+    "title": "ਰਾਸਿ ੫",
+    "slug": "raas-5"
   },
   {
     "id": 8,
     "en_title": "Raas 6",
-    "title": "ਰਾਸਿ ੬"
+    "title": "ਰਾਸਿ ੬",
+    "slug": "raas-6"
   },
   {
     "id": 9,
     "en_title": "Raas 7",
-    "title": "ਰਾਸਿ ੭"
+    "title": "ਰਾਸਿ ੭",
+    "slug": "raas-7"
   },
   {
     "id": 10,
     "en_title": "Raas 8",
-    "title": "ਰਾਸਿ ੮"
+    "title": "ਰਾਸਿ ੮",
+    "slug": "raas-8"
   },
   {
     "id": 11,
     "en_title": "Raas 9",
-    "title": "ਰਾਸਿ ੯"
+    "title": "ਰਾਸਿ ੯",
+    "slug": "raas-9"
   },
   {
     "id": 12,
     "en_title": "Raas 10",
-    "title": "ਰਾਸਿ ੧੦"
+    "title": "ਰਾਸਿ ੧੦",
+    "slug": "raas-10"
   },
   {
     "id": 13,
     "en_title": "Raas 11",
-    "title": "ਰਾਸਿ ੧੧"
+    "title": "ਰਾਸਿ ੧੧",
+    "slug": "raas-11"
   },
   {
     "id": 14,
     "en_title": "Raas 12",
-    "title": "ਰਾਸਿ ੧੨"
+    "title": "ਰਾਸਿ ੧੨",
+    "slug": "raas-12"
   },
   {
     "id": 15,
     "en_title": "Rut 1",
-    "title": "ਰੁਤਿ ੧"
+    "title": "ਰੁਤਿ ੧",
+    "slug": "rut-1"
   },
   {
     "id": 16,
     "en_title": "Rut 2",
-    "title": "ਰੁਤਿ ੨"
+    "title": "ਰੁਤਿ ੨",
+    "slug": "rut-2"
   },
   {
     "id": 17,
     "en_title": "Rut 3",
-    "title": "ਰੁਤਿ ੩"
+    "title": "ਰੁਤਿ ੩",
+    "slug": "rut-3"
   },
   {
     "id": 18,
     "en_title": "Rut 4",
-    "title": "ਰੁਤਿ ੪"
+    "title": "ਰੁਤਿ ੪",
+    "slug": "rut-4"
   },
   {
     "id": 19,
     "en_title": "Rut 5",
-    "title": "ਰੁਤਿ ੫"
+    "title": "ਰੁਤਿ ੫",
+    "slug": "rut-5"
   },
   {
     "id": 20,
     "en_title": "Rut 6",
-    "title": "ਰੁਤਿ ੬"
+    "title": "ਰੁਤਿ ੬",
+    "slug": "rut-6"
   },
   {
     "id": 21,
     "en_title": "Ayaan 1",
-    "title": "ਅਯਨ ੧"
+    "title": "ਅਯਨ ੧",
+    "slug": "ayaan-1"
   },
   {
     "id": 22,
     "en_title": "Ayaan 2",
-    "title": "ਅਯਨ ੨"
+    "title": "ਅਯਨ ੨",
+    "slug": "ayaan-2"
   }
 ]
