@@ -93,7 +93,7 @@ await Promise.all(footnotePromises);
         return (
           <div>
             <h3 class="font-serif text-xl text-gray-700">{chhand.name}</h3>
-            {chhand.pauris.slice(0, 5).map((pauri) => (
+            {chhand.pauris.map((pauri) => (
               <div class="mb-10 text-left">
                 <Pauri pauri={pauri} />
               </div>
