@@ -1,5 +1,4 @@
 ---
-import type { Document } from '@contentful/rich-text-types';
 import { client } from '../../helpers/contentful';
 import Layout from '../../layouts/Layout.astro';
 import type { EntryFieldTypes } from 'contentful';
@@ -12,6 +11,10 @@ interface Category {
 
 interface Page {
   contentTypeId: 'page';
+  sys: {
+    id: EntryFieldTypes.Text; // Unique ID,
+    createdAt: EntryFieldTypes.Date;
+  };
   fields: {
     name: EntryFieldTypes.Text;
     body1: EntryFieldTypes.RichText;
@@ -24,19 +27,14 @@ interface Page {
 // Function to fetch all pages
 async function fetchPages() {
   const entries = await client.getEntries({
-    content_type: 'page', // Make sure this matches the ID of your content model
+    content_type: 'page',
   });
-  console.log('enteries', entries);
   return entries.items;
 }
 
-// Fetch the pages and make them available in the Astro component
 const pages: Page[] = await fetchPages();
-console.log('----------------------------------');
-console.log(pages);
-console.log('==================================');
-console.log(pages[0].fields.mainArtworkUrl);
-console.log(pages[0].fields.category);
+// console.log('==================================');
+// console.log(pages[0]);
 ---
 
 <Layout title="Vidhiya Saagar | Blog">
@@ -53,11 +51,9 @@ console.log(pages[0].fields.category);
       >
         <!-- Render the pages here -->
 
-        <!-- const mainArtwork = yourObject.fields.file.url; -->
-
         {
           pages.map((page) => (
-            <article class="flex flex-col items-start justify-between">
+            <article data-entryId={page.sys.id} class="flex flex-col items-start justify-between">
               <div class="relative w-full">
                 <img
                   src={`https:${page.fields.mainArtworkUrl.fields.file.url}`}
@@ -69,7 +65,11 @@ console.log(pages[0].fields.category);
               <div class="max-w-xl">
                 <div class="mt-8 flex items-center gap-x-4 text-xs">
                   <time datetime="2020-03-16" class="text-gray-500">
-                    Mar 16, 2020
+                    {new Date(page.sys.createdAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
                   </time>
                   <a
                     href="#"
@@ -88,22 +88,6 @@ console.log(pages[0].fields.category);
                   <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
                     {page.fields.metaDescription}
                   </p>
-                </div>
-                <div class="relative mt-8 flex items-center gap-x-4">
-                  <img
-                    src={page.fields.mainArtworkUrl}
-                    alt=""
-                    class="h-10 w-10 rounded-full bg-gray-100"
-                  />
-                  <div class="text-sm leading-6">
-                    <p class="font-semibold text-gray-900">
-                      <a href="#">
-                        <span class="absolute inset-0" />
-                        Michael Foster
-                      </a>
-                    </p>
-                    <p class="text-gray-600">Co-Founder / CTO</p>
-                  </div>
                 </div>
               </div>
             </article>
