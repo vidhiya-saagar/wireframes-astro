@@ -7,6 +7,7 @@ export type Book = {
   enShortSummary: string | null;
   enSynopsis: string | null;
   artworkUrl: string | null;
+  slug: string;
 };
 
 export type Chapter = {
