@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import Nav from '../components/Nav';
 
 export interface Props {
   title: string;
@@ -16,6 +17,7 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <Nav client:load />
     <slot name="extra-headers" />
     <ViewTransitions />
   </head>

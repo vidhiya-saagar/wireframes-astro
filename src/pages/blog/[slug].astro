@@ -34,12 +34,9 @@ export async function getPageBySlug(slug) {
 
 // Fetch the data for the specific blog post
 const page: Page = await getPageBySlug(slug);
-
-console.log('BOB');
-console.log(page.fields.body1);
 ---
 
-<Layout>
+<Layout title={page.fields.name}>
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl">
       <section class="blog-content">
