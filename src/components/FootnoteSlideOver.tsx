@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useStore } from '@nanostores/react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
-import './styles/FootnoteSlideOver.css';
+import './styles/Blog.css';
 import {
   isOpen,
   originalTuk,

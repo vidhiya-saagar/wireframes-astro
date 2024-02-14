@@ -1,41 +1,48 @@
-.footnote-content {
+.blog-content {
   /* General typography and formatting */
   font-family: 'Georgia', serif;
   line-height: 1.6;
   color: #333;
   max-width: 700px;
 }
-.footnote-content p {
+.blog-content p {
   font-size: 18px;
   margin-bottom: 1.5em;
 }
 
-.footnote-content h1,
-.footnote-content h2,
-.footnote-content h3,
-.footnote-content h4,
-.footnote-content h5,
-.footnote-content h6 {
+.blog-content h1,
+.blog-content h2 {
+  font-family: 'sohne', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  letter-spacing: -0.448px;
+  text-rendering: optimizeLegibility;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-weight: bold;
   margin-bottom: 1em;
   line-height: 1.2;
 }
 
-.footnote-content h1 {
+.blog-content h1 {
   font-size: 38px;
 }
 
-.footnote-content h2 {
+.blog-content h2 {
   font-size: 32px;
 }
 
-.footnote-content h2.dialog-title {
+.blog-content h2.dialog-title {
   font-size: 20px;
   font-weight: 400;
 }
 
-.footnote-content h3 {
+.blog-content h3 {
   font-size: 28px;
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-weight: bold;
@@ -43,25 +50,25 @@
   line-height: 1.2;
 }
 
-.footnote-content h4 {
+.blog-content h4 {
   font-size: 24px;
 }
 
-.footnote-content h5 {
+.blog-content h5 {
   font-size: 20px;
 }
 
-.footnote-content h6 {
+.blog-content h6 {
   font-size: 18px;
 }
 
 /* Images and captions */
-.footnote-content figure {
+.blog-content figure {
   margin-bottom: 1.5em;
   text-align: center;
 }
 
-.footnote-content figcaption {
+.blog-content figcaption {
   font-size: 14px;
   font-style: italic;
   margin-top: 0.5em;
@@ -69,7 +76,7 @@
 }
 
 /* Blockquotes */
-.footnote-content blockquote {
+.blog-content blockquote {
   font-family: 'Georgia', serif;
   font-size: 22px;
   font-weight: italic;
@@ -81,7 +88,7 @@
   box-shadow: inset 3px 0 0 0 rgba(41, 41, 41, 1);
 }
 
-.footnote-content a {
+.blog-content a {
   color: rgb(41, 41, 41); /* Custom link color */
   text-decoration: none;
   font-weight: 400; /* Normal font weight */
@@ -89,17 +96,17 @@
   border-bottom: 1px solid rgba(41, 41, 41, 1);
 }
 
-.footnote-content a:hover {
+.blog-content a:hover {
   border-bottom: 1px solid rgba(41, 41, 41, 0.7); /* Darker underline on hover */
 }
 
 /* List */
-.footnote-content ol,
-.footnote-content ul {
+.blog-content ol,
+.blog-content ul {
   margin: 1.5em 0;
 }
 
-.footnote-content li {
+.blog-content li {
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 0.5em;
@@ -107,14 +114,14 @@
   padding-left: 1.5em;
 }
 
-.footnote-content li p {
+.blog-content li p {
   display: inline;
   margin: 0;
   font-size: inherit;
   line-height: inherit;
 }
 
-.footnote-content ul li::before {
+.blog-content ul li::before {
   content: '•';
   position: absolute;
   left: 0;
@@ -123,11 +130,11 @@
   color: #555;
 }
 
-.footnote-content ol {
+.blog-content ol {
   counter-reset: list-counter;
 }
 
-.footnote-content ol li::before {
+.blog-content ol li::before {
   content: counter(list-counter) '.';
   counter-increment: list-counter;
   position: absolute;

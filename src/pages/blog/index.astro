@@ -1,0 +1,69 @@
+---
+import { client } from '../../helpers/contentful';
+import Layout from '../../layouts/Layout.astro';
+import type { EntryFieldTypes } from 'contentful';
+import MediumPreview from '../../components/MediumPreview.astro';
+
+interface Category {
+  fields: {
+    name: EntryFieldTypes.Text;
+  };
+}
+
+export interface Page {
+  contentTypeId: 'page';
+  sys: {
+    id: EntryFieldTypes.Text; // Unique ID,
+    createdAt: EntryFieldTypes.Date;
+  };
+  fields: {
+    name: EntryFieldTypes.Text;
+    slug: EntryFieldTypes.Text;
+    body1: EntryFieldTypes.RichText;
+    mainArtwork: EntryFieldTypes.AssetLink;
+    category: EntryFieldTypes.EntryLink<Category>;
+    metaDescription: EntryFieldTypes.Text;
+  };
+}
+
+// Function to fetch all pages
+async function fetchPages() {
+  const entries = await client.getEntries({
+    content_type: 'page',
+  });
+  return entries.items;
+}
+
+const pages: [Page] = await fetchPages();
+---
+
+<Layout title="Vidhiya Saagar | Blog">
+  <div class="bg-white py-24 sm:py-32 font-sans">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          From the Vidhiya Saagar Blog
+        </h2>
+        <p class="mt-2 text-lg leading-8 text-gray-600">News, updates, and community projects.</p>
+      </div>
+      <div
+        class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+      >
+        <!-- Render the pages here -->
+        {
+          pages.map((page) => (
+            <MediumPreview
+              id={page.sys.id}
+              mainArtwork={page.fields.mainArtwork}
+              createdAt={page.sys.createdAt}
+              name={page.fields.name}
+              slug={page.fields.slug}
+              categoryName={page.fields.category.name}
+              metaDescription={page.fields.metaDescription}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,7 +1,7 @@
 ---
 import FootnoteSlideOver from '../../components/FootnoteSlideOver';
 import Pauri from '../../components/Pauri.astro';
-import Layout from '../../layouts/Layout.astro';
+import GurmukhiLayout from '../../layouts/GurmukhiLayout.astro';
 import type { Chapter } from '../../types/appTypes';
 import { fetchFootnoteContent } from '../../helpers/fetchFootnoteContent';
 import { v2 as cloudinary } from 'cloudinary';
@@ -174,7 +174,7 @@ for (const chhand of chapter.chhands) {
 await Promise.all(footnotePromises);
 ---
 
-<Layout title={`SPG - Chapter ${chapter.number} - ${chapter.enTitle}`}>
+<GurmukhiLayout title={`SPG - Chapter ${chapter.number} - ${chapter.enTitle}`}>
   <Fragment slot="extra-headers">
     <!-- SEO Meta Tags -->
 
@@ -252,4 +252,4 @@ await Promise.all(footnotePromises);
   </div>
 
   <FootnoteSlideOver client:load />
-</Layout>
+</GurmukhiLayout>

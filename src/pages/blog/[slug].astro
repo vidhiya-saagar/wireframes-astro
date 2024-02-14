@@ -1,0 +1,47 @@
+---
+import { client } from '../../helpers/contentful';
+import Layout from '../../layouts/Layout.astro';
+import { Page } from './index.astro';
+import BlogPost from '../../components/BlogPost';
+import '../../components/styles/Blog.css';
+
+const { slug } = Astro.params;
+
+export async function getStaticPaths() {
+  // Fetch entries for a content_type of 'page'
+  const entries = await client.getEntries({
+    content_type: 'page',
+  });
+
+  // Map over the array of entries and return an array of params with slugs
+  const paths = entries.items.map((entry) => {
+    return { params: { slug: entry.fields.slug } };
+  });
+
+  return paths;
+}
+
+// Function to get page data by slug
+export async function getPageBySlug(slug) {
+  const entries = await client.getEntries({
+    content_type: 'page',
+    'fields.slug': slug,
+    limit: 1,
+  });
+
+  return entries.items[0];
+}
+
+// Fetch the data for the specific blog post
+const page: Page = await getPageBySlug(slug);
+---
+
+<Layout title={page.fields.name}>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <section class="blog-content">
+        <BlogPost content={page.fields.body1} />
+      </section>
+    </div>
+  </div>
+</Layout>
