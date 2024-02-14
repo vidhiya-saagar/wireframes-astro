@@ -10,7 +10,7 @@ interface Category {
   };
 }
 
-interface Page {
+export interface Page {
   contentTypeId: 'page';
   sys: {
     id: EntryFieldTypes.Text; // Unique ID,
@@ -18,6 +18,7 @@ interface Page {
   };
   fields: {
     name: EntryFieldTypes.Text;
+    slug: EntryFieldTypes.Text;
     body1: EntryFieldTypes.RichText;
     mainArtwork: EntryFieldTypes.AssetLink;
     category: EntryFieldTypes.EntryLink<Category>;
@@ -34,6 +35,7 @@ async function fetchPages() {
 }
 
 const pages: [Page] = await fetchPages();
+console.log(pages);
 ---
 
 <Layout title="Vidhiya Saagar | Blog">
@@ -56,6 +58,7 @@ const pages: [Page] = await fetchPages();
               mainArtwork={page.fields.mainArtwork}
               createdAt={page.sys.createdAt}
               name={page.fields.name}
+              slug={page.fields.slug}
               categoryName={page.fields.category.name}
               metaDescription={page.fields.metaDescription}
             />
