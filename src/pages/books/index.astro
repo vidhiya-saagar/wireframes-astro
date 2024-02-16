@@ -4,7 +4,7 @@ import type { Book } from '../../types/appTypes';
 
 const API_URL = import.meta.env.API_URL;
 
-// Fetch Chapters for the Book
+// Fetch Books that we've released
 const bookRes = await fetch(`${API_URL}/books.json`);
 const books: [Book] = (await bookRes.json()).books;
 ---
