@@ -1,6 +1,7 @@
 import React from 'react';
 import { BLOCKS } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import '../components/styles/Blog.css';
 
 // TODO: We have a duplicate `contentfulOptions`
 const contentfulOptions = {
