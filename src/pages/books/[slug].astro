@@ -20,9 +20,7 @@ export function getStaticPaths() {
 const API_URL = import.meta.env.API_URL;
 
 // Get Book ID from `slug` (We should probably save slug in the DB).
-console.log('slug', slug);
 const id = booksJSON.find((book) => book.slug === slug).id;
-console.log('id', id);
 
 // Fetch Chapters for the Book
 const bookRes = await fetch(`${API_URL}/books/${id}.json`);
@@ -106,7 +104,7 @@ const chapters = allChapters.chapters;
     </h1>
     <div class="flex justify-center">
       <p class="text-gray-800 my-9 text-center w-2/3 text-xl">
-        {book.enShortSummary}
+        {book.enSynopsis}
       </p>
     </div>
   </Fragment>

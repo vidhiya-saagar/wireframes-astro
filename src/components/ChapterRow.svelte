@@ -4,8 +4,10 @@
 
   export let chapter: Chapter = null;
   export let bookName: string = '';
-  export let description =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac orci ultricies, viverra tellus sit amet, lobortis elit. Aliquam erat volutpat. Sed metus turpis, rutrum eu varius non, bibendum quis libero. Invulputate.';
+  export let description = chapter.enLongSummary?.slice(0, 155).trim() || '';
+  if (!description.endsWith('.')) {
+    description += '...';
+  }
 
   function updateStateForModal() {
     const container: HTMLElement = document.querySelector('.chapter-preview-container');

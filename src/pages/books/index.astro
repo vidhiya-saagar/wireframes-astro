@@ -1,5 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import type { Book } from '../../types/appTypes';
+
+const API_URL = import.meta.env.API_URL;
+
+// Fetch Chapters for the Book
+const bookRes = await fetch(`${API_URL}/books.json`);
+const books: [Book] = (await bookRes.json()).books;
 ---
 
 <Layout title="All Books of the Suraj Prakash Granth">
@@ -13,96 +20,34 @@ import Layout from '../../layouts/Layout.astro';
   </Fragment>
 
   <div
-    class="grid grid-cols-1 grid-rows-3 max-w-sm sm:max-w-full lg:max-w-7xl m-auto sm:grid-rows-none sm:grid-cols-2 lg:grid-cols-3 gap-6 my-10 transition-all"
+    class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 lg:max-w-7xl m-auto"
   >
-    <!-- Card 1 -->
-    <div class="">
-      <div class="h-96 relative">
-        <img
-          alt="Guru Nanak Dev Ji artwork on an the cover of a Nanak Prakash pothi"
-          src="https://res.cloudinary.com/dip5mdxwe/image/upload/v1680300510/NPG_AI_Zoomed_t8jybg.jpg"
-          class="absolute inset-0 h-full w-full object-cover"
-          decoding="async"
-          loading="lazy"
-        />
-      </div>
-      <div class="py-5">
-        <h2 class="font-serif text-xl md:text-2xl">Nanak Prakash Granth 1</h2>
-        <p class="mt-2"></p>
-      </div>
-      <div>
-        <a
-          href={`/books/${1}`}
-          class="uppercase p-2 text-center my-3 underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-        >
-          Read
-        </a>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="">
-      <div class="bg-slate-300 h-96"></div>
-
-      <div class="py-5">
-        <h2 class="font-serif text-xl md:text-2xl">Nanak Prakash Granth 2</h2>
-        <p class="mt-2">Coming soon...</p>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="">
-      <div class="bg-slate-300 h-96"></div>
-      <div class="py-5">
-        <h2 class="font-serif text-xl md:text-2xl">Raas 1</h2>
-        <p class="mt-2">Coming soon...</p>
-      </div>
-    </div>
-    <div class="">
-      <div class="bg-slate-300 h-96"></div>
-      <div class="py-5">
-        <h2 class="font-serif text-xl md:text-2xl">Raas 2</h2>
-        <p class="mt-2">Coming soon...</p>
-      </div>
-    </div>
-    <div class="">
-      <div class="bg-slate-300 h-96"></div>
-      <div class="py-5">
-        <h2 class="font-serif text-xl md:text-2xl">Raas 3</h2>
-        <p class="mt-2">Coming soon...</p>
-      </div>
-    </div>
-    <div class="">
-      <div class="bg-slate-300 h-96"></div>
-      <div class="py-5">
-        <h2 class="font-serif text-xl md:text-2xl">Raas 4</h2>
-        <p class="mt-2">Coming soon...</p>
-      </div>
-    </div>
-
-    <div class="">
-      <div class="bg-slate-300 h-96"></div>
-      <div class="py-5">
-        <h2 class="font-serif text-xl md:text-2xl">Raas 5</h2>
-        <p class="mt-2">Coming soon...</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="">
-    <img
-      src="https://res.cloudinary.com/dip5mdxwe/image/upload/f_auto/q_auto/v1680300510/NPG_AI_Zoomed_t8jybg.jpg"
-      loading="lazy"
-      width="300px"
-      height="500px"
-      alt=""
-    />
-    <div class="py-5">
-      <h2 class="font-serif text-xl md:text-2xl">Raas 1</h2>
-      <p class="mt-2">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a arcu sed mauris feugiat
-        luctus sit amet ut.
-      </p>
-    </div>
+    {
+      books.map((book) => (
+        <div class="group relative">
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <img
+              src={book.artworkUrl}
+              alt=""
+              class="h-full w-full object-cover object-center lg:h-full lg:w-full"
+            />
+          </div>
+          <div class="mt-4 flex justify-between">
+            <div>
+              <h3 class="text-sm text-gray-700">
+                <a href={`/books/${book.slug}`}>
+                  <span aria-hidden="true" class="absolute inset-0" />
+                  {book.enTitle}
+                </a>
+              </h3>
+              <p class="mt-1 text-sm text-gray-500">
+                {book.numberOfChaptersReleased} chapters available
+              </p>
+            </div>
+            <p class="text-sm font-medium text-gray-900">{book.enShortSummary}</p>
+          </div>
+        </div>
+      ))
+    }
   </div>
 </Layout>

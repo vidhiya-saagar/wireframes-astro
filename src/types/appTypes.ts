@@ -8,6 +8,7 @@ export type Book = {
   enSynopsis: string | null;
   artworkUrl: string | null;
   slug: string;
+  numberOfChaptersReleased: number;
 };
 
 export type Chapter = {
