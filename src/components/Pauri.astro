@@ -3,6 +3,7 @@ import HighlightedTuk from './HighlightedTuk.svelte';
 import type { Pauri, Tuk } from '../types/appTypes';
 import ViewPauriFootnoteButton from './ViewPauriFootnoteButton.svelte';
 import PauriWithTukTranslations from './PauriWithTukTranslations.astro';
+import { toGurmukhiNumber } from '../helpers/gurmukhiUtils';
 
 export interface Props {
   pauri: Pauri;
@@ -35,7 +36,7 @@ const hasPauriFootnote = pauri.footnote !== null;
                 <p class="leading-8 text-xl font-medium">
                   {tuk.content}
                   <span class="whitespace-nowrap">
-                    &nbsp;{isLastTuk ? `॥${pauri.number}॥` : '।'}
+                    &nbsp;{isLastTuk ? `॥${toGurmukhiNumber(pauri.number)}॥` : '।'}
                   </span>
                 </p>
               )}

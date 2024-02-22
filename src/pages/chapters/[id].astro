@@ -202,21 +202,21 @@ await Promise.all(footnotePromises);
 
     <!-- Header Image -->
     <div
-      class="relative flex w-full h-56 bg-gradient-to-b from-[#C4C4C4] to-transparent sm:h-80 transition-all"
+      class="relative flex w-full h-56 bg-gradient-to-b from-base-300 to-transparent sm:h-80 transition-all"
     >
     </div>
-    <h1 class="font-serif font-bold italic text-center text-2xl">
+    <h1 class="font-serif font-bold italic text-center text-2xl text-primary">
       {chapter.book.enTitle}
     </h1>
     <div class="flex justify-center">
-      <p class="text-gray-800 my-9 text-center w-2/3">
-        {chapter.book.enSynopsis}
+      <p class="text-base-content my-9 text-center w-2/3">
+        {chapter.enShortSummary}
       </p>
     </div>
   </Fragment>
 
   <div class="flex w-full justify-center">
-    <div class="my-3 lg:max-w-7xl flex flex-col items-center">
+    <div class="my-3 lg:max-w-5xl flex flex-col items-center">
       <h1 class="italic font-serif py-2 text-xl font-semibold text-center">
         {chapter.enTitle}
       </h1>
@@ -227,14 +227,14 @@ await Promise.all(footnotePromises);
   </div>
 
   <div class="flex w-full justify-center">
-    <div class="my-3 lg:max-w-7xl flex flex-col items-center">
+    <div class="my-3 lg:max-w-5xl flex flex-col items-center">
       <h3 class="font-serif py-2 font-medium text-center">
         {chapter.chhands.length} Chhands
       </h3>
     </div>
   </div>
 
-  <div class="my-20 flex flex-col lg:max-w-3xl">
+  <div class="my-20 flex flex-col lg:max-w-5xl m-auto">
     {
       chapter.chhands.map((chhand) => {
         return (
