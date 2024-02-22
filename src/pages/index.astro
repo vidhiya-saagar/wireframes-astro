@@ -7,28 +7,26 @@ import 'sant-lipi';
 <Layout title="SPG (Beta) - Suraj Prakash Granth">
   <Fragment slot="extra-headers">
     <!-- Header image -->
-    <div
-      class="relative flex w-full h-56 bg-gradient-to-b from-[#C4C4C4] to-transparent sm:h-80 transition-all"
-    >
-    </div>
-    <h1 class="font-serif text-center italic text-4xl">Suraj Prakaash Granth</h1>
-    <p class="text-center text-slate-900 mt-9">
+    <div class="relative flex w-full h-56 bg-primary sm:h-80 transition-all"></div>
+    <h1 class="font-serif text-center italic text-4xl text-base-100">Suraj Prakaash Granth</h1>
+    <p class="text-center text-base-content mt-9">
       New website coming soon. In the meantime, you can read existing some translations on the
       current <a
         href="https://spg.dev/books"
-        class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">SPG Website</a
+        class="underline text-primary hover:text-primary-focus visited:text-secondary"
+        >SPG Website</a
       >.
     </p>
   </Fragment>
   <div class="flex justify-center overflow-auto">
     <div class="my-3 lg:max-w-7xl w-full flex flex-col items-center">
-      <h2 class="italic font-serif py-2 text-lg">All Books</h2>
+      <h2 class="italic font-serif py-2 text-lg text-base-content">All Books</h2>
       <BookSlideshow />
 
       <div>
         <a
           href="/books"
-          class="uppercase p-2 text-center my-3 underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+          class="uppercase p-2 text-center my-3 underline text-primary hover:text-primary-focus visited:text-secondary"
         >
           See All Books
         </a>
