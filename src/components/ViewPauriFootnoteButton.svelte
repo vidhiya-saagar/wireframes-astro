@@ -22,7 +22,7 @@
 
 <button
   type="button"
-  class="rounded bg-indigo-50 py-1 px-2 text-xs font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100 font-sans mt-4"
+  class="rounded bg-primary bg-opacity-20 py-1 px-2 text-xs font-semibold text-primary shadow-sm hover:bg-primary hover:bg-opacity-30 font-sans mt-4"
   on:click={openPauriFootnote}
 >
   View Footnote for Pauri {pauri.number}

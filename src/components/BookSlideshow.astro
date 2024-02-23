@@ -8,9 +8,12 @@ const description = 'Coming soon.';
   {
     books.map((book, i) => (
       <div class="snap-center shrink-0 first:pl-8 last:pr-8">
-        <div class="bg-slate-300 w-64 h-80" />
-        <div class="py-3 space-y-2 w-64 text-slate-900 text-center">
-          <p class="font-serif font-semibold text-slate-800">{book.en_title}</p>
+        {/* Artwork */}
+        <div class="bg-neutral w-64 h-80" />
+
+        {/* Info */}
+        <div class="py-3 space-y-2 w-64 text-center text-base-content">
+          <p class="font-serif font-semibold">{book.en_title}</p>
           <p>{i === 0 ? 'Chapter 1 is available.' : description}</p>
         </div>
       </div>

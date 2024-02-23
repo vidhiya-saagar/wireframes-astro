@@ -51,7 +51,7 @@ export default function FootnoteSlideOver(): JSX.Element {
   return (
     <Transition.Root show={$isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={() => isOpen.set(false)}>
-        <div className="fixed inset-0" />
+        <div className="fixed inset-0 bg-base-200 bg-opacity-50" />
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
@@ -65,17 +65,17 @@ export default function FootnoteSlideOver(): JSX.Element {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="footnote-content flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                <Dialog.Panel className="pointer-events-auto w-screen max-w-md blog-content">
+                  <div className="flex h-full flex-col overflow-y-scroll bg-base-100 py-6 shadow-xl">
                     <div className="px-4 sm:px-6 mb-8">
                       <div className="flex items-start justify-between">
-                        <Dialog.Title className="dialog-title text-base leading-6 text-gray-400">
+                        <Dialog.Title className="text-base-content text-lg leading-6">
                           Footnotes
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="rounded-md text-neutral bg-base-100 hover:text-neutral-focus focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                             onClick={() => isOpen.set(false)}
                           >
                             <span className="sr-only">Close panel</span>
@@ -84,6 +84,7 @@ export default function FootnoteSlideOver(): JSX.Element {
                         </div>
                       </div>
                     </div>
+
                     {/* Bhai Vir Singh Footnotes BELOW */}
                     {$bhaiVirSinghFootnote && (
                       <div className="relative flex-1 px-4 sm:px-6">
@@ -95,13 +96,15 @@ export default function FootnoteSlideOver(): JSX.Element {
                             width="32"
                             height="32"
                           />
-                          <h4 style={{ marginBottom: 0 }}>Dr. Bhai Vir Singh:</h4>
+                          <h4 className="text-base-content m-0">Dr. Bhai Vir Singh:</h4>
                         </div>
                         <blockquote className="relative">
-                          <p className="text-gray-800 sm:text-xl dark:text-black">{$originalTuk}</p>
+                          <p className="text-base-content sm:text-xl dark:text-base-100">
+                            {$originalTuk}
+                          </p>
                         </blockquote>
                         <div
-                          className="mt-6 footnote"
+                          className="mt-6 footnote text-base-content"
                           dangerouslySetInnerHTML={{
                             __html: $bhaiVirSinghFootnote,
                           }}

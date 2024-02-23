@@ -12,8 +12,8 @@ const books: [Book] = (await bookRes.json()).books;
 <Layout title="All Books of the Suraj Prakash Granth">
   <Fragment slot="extra-headers">
     <div class="max-w-sm sm:max-w-full lg:max-w-7xl m-auto my-10 transition-all">
-      <h1 class="font-serif text-3xl text-gray-900">All Books</h1>
-      <p class="py-2">
+      <h1 class="font-serif text-3xl text-base-content">All Books</h1>
+      <p class="py-2 text-base-content">
         The <i>Suraj Prakash Granth</i> is composed of 22 pieces.
       </p>
     </div>
@@ -25,7 +25,7 @@ const books: [Book] = (await bookRes.json()).books;
     {
       books.map((book) => (
         <div class="group relative">
-          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-neutral lg:aspect-none group-hover:opacity-75 lg:h-80">
             <img
               src={book.artworkUrl}
               alt=""
@@ -34,17 +34,17 @@ const books: [Book] = (await bookRes.json()).books;
           </div>
           <div class="mt-4 flex justify-between">
             <div>
-              <h3 class="text-sm text-gray-700">
-                <a href={`/books/${book.slug}`}>
+              <h3 class="text-sm text-base-content">
+                <a href={`/books/${book.slug}`} class="hover:text-primary-focus">
                   <span aria-hidden="true" class="absolute inset-0" />
                   {book.enTitle}
                 </a>
               </h3>
-              <p class="mt-1 text-sm text-gray-500">
+              <p class="mt-1 text-sm text-base-content">
                 {book.numberOfChaptersReleased} chapters available
               </p>
             </div>
-            <p class="text-sm font-medium text-gray-900">{book.enShortSummary}</p>
+            <p class="text-sm font-medium text-base-content">{book.enShortSummary}</p>
           </div>
         </div>
       ))

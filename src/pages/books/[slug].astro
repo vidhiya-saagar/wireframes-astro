@@ -43,7 +43,7 @@ const chapters = allChapters.chapters;
       <ol role="list" class="flex items-center space-x-4">
         <li>
           <div>
-            <a href="/" class="text-gray-400 hover:text-gray-500">
+            <a href="/" class="text-base-content hover:text-primary-focus">
               <svg
                 class="h-5 w-5 flex-shrink-0"
                 viewBox="0 0 20 20"
@@ -62,22 +62,7 @@ const chapters = allChapters.chapters;
         <li>
           <div class="flex items-center">
             <svg
-              class="h-5 w-5 flex-shrink-0 text-gray-300"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-            >
-              <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path>
-            </svg>
-            <a href="/books" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
-              >Books</a
-            >
-          </div>
-        </li>
-        <li>
-          <div class="flex items-center">
-            <svg
-              class="h-5 w-5 flex-shrink-0 text-gray-300"
+              class="h-5 w-5 flex-shrink-0 text-base-content"
               fill="currentColor"
               viewBox="0 0 20 20"
               aria-hidden="true"
@@ -85,8 +70,24 @@ const chapters = allChapters.chapters;
               <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path>
             </svg>
             <a
-              href=`/books/${book.slug}`
-              class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+              href="/books"
+              class="ml-4 text-sm font-medium text-base-content hover:text-primary-focus">Books</a
+            >
+          </div>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg
+              class="h-5 w-5 flex-shrink-0 text-base-content"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+            >
+              <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path>
+            </svg>
+            <a
+              href={`/books/${book.slug}`}
+              class="ml-4 text-sm font-medium text-base-content hover:text-primary-focus"
               aria-current="page">{book.enTitle}</a
             >
           </div>
@@ -96,14 +97,14 @@ const chapters = allChapters.chapters;
 
     <!-- Header Image -->
     <div
-      class="relative flex w-full h-56 bg-gradient-to-b from-[#C4C4C4] to-transparent sm:h-80 transition-all"
+      class="relative flex w-full h-56 bg-gradient-to-b from-primary to-transparent sm:h-80 transition-all"
     >
     </div>
-    <h1 class="font-serif font-bold italic text-center text-2xl">
+    <h1 class="font-serif font-bold italic text-center text-2xl text-base-content">
       {book.enTitle}
     </h1>
     <div class="flex justify-center">
-      <p class="text-gray-800 my-9 text-center w-2/3 text-xl">
+      <p class="text-base-content my-9 text-center w-2/3 text-xl">
         {book.enSynopsis}
       </p>
     </div>
@@ -113,16 +114,16 @@ const chapters = allChapters.chapters;
 
   <div class="flex my-16 lg:my-0 transition-all justify-center">
     <div class="lg:max-w-7xl">
-      <h2 class="font-serif text-2xl">Chapters</h2>
+      <h2 class="font-serif text-2xl text-base-content">Chapters</h2>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <!-- More about this Granth -->
         <div class="hidden lg:block mt-8">
           <div>
-            <p><strong>{chapters.length}</strong> chapters available. More to come!</p>
+            <p class="text-base-content">
+              <strong>{chapters.length}</strong> chapters available. More to come!
+            </p>
           </div>
         </div>
-        <!-- Container for Chapter List -->
         <div class="mt-10 lg:mt-0">
           {
             chapters.map((chapter) => (

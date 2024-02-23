@@ -27,7 +27,8 @@
       From: "opacity-100"
       To: "opacity-0"
   -->
-  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+
+  <div class="fixed inset-0 bg-base-200 bg-opacity-75 transition-opacity"></div>
 
   <div class="fixed inset-0 z-10 overflow-y-auto">
     <div
@@ -44,12 +45,12 @@
           To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
       -->
       <div
-        class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
+        class="relative transform overflow-hidden rounded-lg bg-base-100 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
       >
         <div class="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
           <button
             type="button"
-            class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            class="rounded-md bg-base-100 text-base-content hover:text-primary-focus focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             on:click={closeModal}
           >
             <span class="sr-only">Close</span>
@@ -66,17 +67,16 @@
           </button>
         </div>
         <div class="sm:flex sm:items-start">
-          <!-- <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"> -->
           <div class="mt-3 text-center">
-            <h4 class="text-base text-center">
+            <h4 class="text-base text-center text-base-content">
               {$chapterToDisplay?.bookName || 'Book Name'}
             </h4>
-            <h3 class="text-2xl p-2 font-semibold leading-6 text-gray-900 text-center">
+            <h3 class="text-2xl p-2 font-semibold leading-6 text-base-content text-center">
               {$chapterToDisplay?.title || 'Chapter Title'}
             </h3>
 
             <div class="my-8 flex justify-center items-center">
-              <div class="rounded-full p-24 sm:p-36 bg-slate-400 relative">
+              <div class="rounded-full p-24 sm:p-36 bg-neutral relative">
                 <img
                   alt="Chapter artwork"
                   src={$chapterToDisplay?.artworkUrl}
@@ -86,7 +86,7 @@
                 />
               </div>
             </div>
-            <div class="mt-2 text-left">
+            <div class="mt-2 text-left text-base-content">
               {#if $chapterToDisplay?.enLongSummary}
                 {#each $chapterToDisplay.enLongSummary.split('\n') as p}
                   <p class="my-2">{p}</p>
@@ -100,7 +100,7 @@
         <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
           <button
             type="button"
-            class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
+            class="inline-flex w-full justify-center rounded-md bg-accent px-3 py-2 text-sm font-semibold text-accent-content shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:col-start-2"
             on:click={() => {
               window.location.href = `/chapters/${$chapterToDisplay?.id}`;
             }}
@@ -109,7 +109,7 @@
           </button>
           <button
             type="button"
-            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0 sm:mr-3"
+            class="mt-3 inline-flex w-full justify-center rounded-md bg-base-200 px-3 py-2 text-sm font-semibold text-base-content shadow-sm ring-1 ring-inset ring-neutral hover:bg-base-100 sm:col-start-1 sm:mt-0 sm:mr-3"
             on:click={closeModal}
           >
             Cancel

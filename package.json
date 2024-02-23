@@ -23,12 +23,14 @@
     "astro": "^3.1.4",
     "cloudinary": "^1.41.0",
     "contentful": "^9.3.5",
+    "daisyui": "^4.7.2",
     "nanostores": "^0.7.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sant-lipi": "^0.14.0",
     "svelte": "^3.55.1",
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.0.24",
+    "theme-change": "^2.5.0"
   },
   "devDependencies": {
     "@contentful/rich-text-types": "^16.0.3"
