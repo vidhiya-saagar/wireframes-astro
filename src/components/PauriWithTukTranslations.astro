@@ -31,14 +31,14 @@ const hasPauriFootnote = pauri.footnote !== null;
             />
           ) : (
             <>
-              <p class="leading-8 text-xl font-medium text-neutral">
+              <p class="leading-8 text-xl md:text-2xl font-medium text-base-content">
                 {tuk.content}
                 <span>{isLastTuk ? ` ॥${toGurmukhiNumber(pauri.number)}॥` : ' ।'}</span>
               </p>
             </>
           )}
           {tuk.translation && (
-            <p class="leading-8 text-lg font-serif text-accent">
+            <p class="leading-8 text-lg md:text-xl font-serif text-accent">
               {tuk.translation?.enTranslation}
               <span>{isLastTuk ? ` ||${pauri.number}||` : ' |'}</span>
             </p>

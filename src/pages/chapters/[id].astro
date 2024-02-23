@@ -205,7 +205,7 @@ await Promise.all(footnotePromises);
       class="relative flex w-full h-56 bg-gradient-to-b from-base-300 to-transparent sm:h-80 transition-all"
     >
     </div>
-    <h1 class="font-serif font-bold italic text-center text-2xl text-primary">
+    <h1 class="font-serif font-bold italic text-center text-2xl text-base-content">
       {chapter.book.enTitle}
     </h1>
     <div class="flex justify-center">
@@ -215,7 +215,7 @@ await Promise.all(footnotePromises);
     </div>
   </Fragment>
 
-  <div class="flex w-full justify-center">
+  <div class="flex justify-center">
     <div class="my-3 lg:max-w-5xl flex flex-col items-center">
       <h1 class="italic font-serif py-2 text-xl font-semibold text-center">
         {chapter.enTitle}
@@ -234,21 +234,23 @@ await Promise.all(footnotePromises);
     </div>
   </div>
 
-  <div class="my-20 flex flex-col lg:max-w-5xl m-auto">
-    {
-      chapter.chhands.map((chhand) => {
-        return (
-          <div>
-            <h3 class="font-serif text-xl text-gray-700">{chhand.name}</h3>
-            {chhand.pauris.map((pauri) => (
-              <div class="mb-10 text-left">
-                <Pauri pauri={pauri} />
-              </div>
-            ))}
-          </div>
-        );
-      })
-    }
+  <div class="max-w-3xl m-auto">
+    <div class="my-20 flex flex-col md:max-w-xl">
+      {
+        chapter.chhands.map((chhand) => {
+          return (
+            <div>
+              <h3 class="font-serif text-xl text-info">{chhand.name}</h3>
+              {chhand.pauris.map((pauri) => (
+                <div class="mb-10 text-left">
+                  <Pauri pauri={pauri} />
+                </div>
+              ))}
+            </div>
+          );
+        })
+      }
+    </div>
   </div>
 
   <FootnoteSlideOver client:load />

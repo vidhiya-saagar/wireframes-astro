@@ -33,7 +33,7 @@ const hasPauriFootnote = pauri.footnote !== null;
                   client:visible
                 />
               ) : (
-                <p class="leading-8 text-xl font-medium">
+                <p class="leading-8 text-xl md:text-2xl font-medium">
                   {tuk.content}
                   <span class="whitespace-nowrap">
                     &nbsp;{isLastTuk ? `॥${toGurmukhiNumber(pauri.number)}॥` : '।'}
@@ -44,9 +44,9 @@ const hasPauriFootnote = pauri.footnote !== null;
           );
         })}
         {pauri.translation && (
-          <p class="leading-8 text-lg font-serif text-stone-800">
+          <p class="leading-8 text-lg md:text-xl font-serif text-accent">
             {pauri.translation?.enTranslation}
-            <span>||{pauri.number}||</span>
+            <span> ||{pauri.number}||</span>
           </p>
         )}
 

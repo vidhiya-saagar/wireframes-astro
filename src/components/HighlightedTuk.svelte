@@ -22,8 +22,8 @@
   }
 </script>
 
-<button class="leading-8 text-xl cursor-pointer text-left" on:click={openTukFootnotes}>
-  <span class="bg-neutral bg-opacity-10 text-neutral py-1 leading-[2.1] box-border">
+<button class="leading-8 text-xl lg:text-2xl cursor-pointer text-left" on:click={openTukFootnotes}>
+  <span class="py-1 leading-[2.1] box-border text-base-content bg-base-content bg-opacity-10">
     {tuk.content}<span class="whitespace-nowrap">
       &nbsp;{isLastTuk ? `॥${toGurmukhiNumber(pauriNumber)}॥` : '।'}</span
     >
