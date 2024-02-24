@@ -9,8 +9,8 @@ module.exports = {
     // themes: ['cyberpunk'], // GOOD
     // themes: ['aqua'], // SUCKS
     // themes: ['synthwave'], // OK
-    themes: ['retro'], // GOOD
-    // themes: ['valentine'], // GOOD
+    // themes: ['retro'], // GOOD
+    themes: ['valentine'], // GOOD
     // themes: ['halloween'], // GOOD
     // themes: ['forest'], // GOOD
     // themes: ['dracula'], // GOOD
