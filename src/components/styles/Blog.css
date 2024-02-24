@@ -53,6 +53,11 @@
   @apply text-lg; /* For 18px equivalent */
 }
 
+.blog-content hr {
+  border-bottom: 2px solid oklch(var(--bc));
+  margin-bottom: 2rem;
+}
+
 /* Images and captions */
 .blog-content figure {
   margin-bottom: 1.5em;

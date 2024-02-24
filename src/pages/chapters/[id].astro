@@ -45,6 +45,7 @@ cloudinary.config({
 
 // TODO: Figure out this stuff later...
 function generateOGImage({ artworkUrl, enTitle, book, number, id }) {
+  if (!artworkUrl) return;
   // Check if the provided URL is a Cloudinary URL
   if (artworkUrl.includes('res.cloudinary.com')) {
     const parts = artworkUrl.split('/');

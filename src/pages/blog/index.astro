@@ -30,6 +30,7 @@ export interface Page {
 async function fetchPages() {
   const entries = await client.getEntries({
     content_type: 'page',
+    order: '-sys.createdAt',
   });
   return entries.items;
 }
@@ -58,7 +59,7 @@ const pages: [Page] = await fetchPages();
               createdAt={page.sys.createdAt}
               name={page.fields.name}
               slug={page.fields.slug}
-              categoryName={page.fields.category.name}
+              categoryName={page.fields.category.fields.name}
               metaDescription={page.fields.metaDescription}
             />
           ))
