@@ -40,7 +40,7 @@ const hasPauriFootnote = pauri.footnote !== null;
           {tuk.translation && (
             <p class="leading-8 text-lg md:text-xl font-serif text-accent">
               {tuk.translation?.enTranslation}
-              <span>{isLastTuk ? ` ||${pauri.number}||` : ' |'}</span>
+              <span>{isLastTuk && ` ||${pauri.number}||`}</span>
             </p>
           )}
 
