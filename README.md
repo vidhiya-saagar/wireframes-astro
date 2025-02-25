@@ -1,10 +1,16 @@
 # SPG Wireframes - Astro
 
-[Live Demo](https://admirable-salamander-f3c4c4.netlify.app/)
-
 ## Description
 
-Will add soon.
+This is a repo for a "new"-er SPG website, that you can see on https://beta.spg.dev/books.
+
+This one is built using Astro! 
+
+### Why Astro?
+
+The reason we chose Astro is because this app is highly static. The whole application is based on a book (the Suraj Prakash Granth), which lives in a database. The contents of that data isn't really going to change. Meaning, when someone loads `/chapters/123`, it should always load the same page.
+
+And Astro is very good at optimizing these things because it will BUILD these pages in our deployment.
 
 ## 🚀 Project Structure
 
@@ -42,7 +48,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`      | Preview your build locally, before deploying     |
 | `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
